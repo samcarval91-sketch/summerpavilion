@@ -3,9 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azul: Pavilhão de Verão - Calculadora de Pontuação</title>
+  <title>Azul: Pavilhão de Verão (Summer Pavilion) - Calculadora de Pontos Online</title>
+  <meta name="description" content="Calculadora de pontos online e gratuita para o jogo de tabuleiro Azul: Pavilhão de Verão (Azul: Summer Pavilion). Tabuleiro interativo com cálculo automático de adjacência, estrelas completas, bônus de números, janelas, estátuas, pilares e placar da mesa.">
+  <meta name="keywords" content="Azul Pavilhão de Verão, Azul Summer Pavilion, calculadora de pontos, score calculator, contar pontos Azul, pontuação Azul Pavilhão de Verão, Azul Mini, board game, jogo de tabuleiro, Galápagos Jogos, Next Move Games">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="author" content="Fan Project - Azul Summer Pavilion">
+
+  <!-- Open Graph / WhatsApp / Facebook / Discord -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="Azul: Pavilhão de Verão - Calculadora de Pontos">
+  <meta property="og:title" content="Azul: Pavilhão de Verão (Summer Pavilion) - Calculadora de Pontos">
+  <meta property="og:description" content="Conte os pontos da sua partida de Azul: Pavilhão de Verão em segundos no tabuleiro interativo. Calcula adjacência, estrelas, bônus 1 a 4, cantos e 6 rodadas.">
+  <meta property="og:image" content="/static/favicon.svg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Azul: Pavilhão de Verão - Calculadora de Pontos Online">
+  <meta name="twitter:description" content="Tabuleiro interativo gratuito para calcular pontos de Azul: Pavilhão de Verão (Summer Pavilion).">
+  <meta name="twitter:image" content="/static/favicon.svg">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
   <link rel="apple-touch-icon" href="/static/favicon.svg">
+
+  <!-- Structured Data (Schema.org JSON-LD: WebApplication + FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "Calculadora de Pontos - Azul: Pavilhão de Verão",
+        "alternateName": "Azul: Summer Pavilion Score Calculator",
+        "description": "Ferramenta interativa gratuita para calcular a pontuação final do jogo de tabuleiro Azul: Pavilhão de Verão (Azul: Summer Pavilion), incluindo grupos adjacentes, estrelas completas, bônus numéricos de 1 a 4, espaços especiais (janelas, estátuas e pilares) e penalidades por rodada.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "All",
+        "inLanguage": ["pt-BR", "en"],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Como funciona a pontuação de colocação no Azul: Pavilhão de Verão?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ao colocar um azulejo em uma estrela, você ganha 1 ponto por ele mais 1 ponto para cada azulejo conectado no mesmo grupo contíguo. No placar final acumulado da estrela, um grupo contíguo de tamanho k soma k*(k+1)/2 pontos (1 azulejo = 1 pt, 2 = 3 pts, 3 = 6 pts, 4 = 10 pts, 5 = 15 pts, 6 = 21 pts)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quantos pontos vale cada estrela completa no Azul: Pavilhão de Verão?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ao completar todos os 6 espaços de uma estrela, você recebe o bônus daquela estrela: Multicolorida (Centro) = 12 pontos, Vermelha = 14 pontos, Azul = 15 pontos, Amarela = 16 pontos, Laranja = 17 pontos, Verde = 18 pontos e Roxa = 20 pontos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quais são os bônus de números e espaços especiais no Azul: Pavilhão de Verão?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Cobrir todos os números 1, 2, 3 ou 4 nas 7 estrelas concede +4, +8, +12 e +16 pontos. Cercar completamente uma Coluna/Pilar concede +1 azulejo bônus, uma Estátua concede +2 azulejos bônus e uma Janela concede +3 azulejos bônus."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
