@@ -86,7 +86,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=7">
+  <link rel="stylesheet" href="/static/style.css?v=10">
 </head>
 <body>
   <!-- Header Bar -->
@@ -114,18 +114,47 @@
   </header>
 
   <main class="app-main">
-    <!-- Espaço Publicitário / Ad Banner Section -->
-    <section class="ad-banner-section card" id="adBannerSection" aria-label="Publicidade">
+    <!-- Espaço Publicitário / Ad Banner Section (728x90) -->
+    <section class="ad-banner-section" id="adBannerSection" aria-label="Publicidade">
       <div class="ad-banner-badge" data-i18n="ad_badge">PUBLICIDADE</div>
       <div class="ad-banner-slot" id="adBannerSlot">
-        <!-- Insira aqui seu código do Google AdSense (<ins class="adsbygoogle">...) ou banner de parceiro -->
-        <div class="ad-placeholder-content">
-          <span class="ad-placeholder-icon">📢</span>
-          <div class="ad-placeholder-texts">
-            <strong class="ad-placeholder-title" data-i18n="ad_title">Espaço Reservado para Anúncio (728×90 / Responsivo)</strong>
-            <span class="ad-placeholder-desc" data-i18n="ad_desc">Pronto para Google AdSense ou banner de parceiro</span>
+        <a href="https://meli.la/2rX2YgA" target="_blank" rel="noopener noreferrer sponsored" class="meli-banner-728x90" aria-label="Ofertas de Boardgames no Mercado Livre: Azul Pavilhão de Verão Mini, Azul Mini e Trapwords">
+          <div class="meli-banner-bg-pattern" aria-hidden="true"></div>
+
+          <!-- Fotos Reais das Caixas dos Jogos conforme o Anúncio -->
+          <div class="meli-banner-products" aria-hidden="true">
+            <div class="meli-prod-card prod-left" title="Trapwords - Devir">
+              <img src="/static/box-trapwords.webp" alt="Caixa do jogo Trapwords - Devir">
+            </div>
+            <div class="meli-prod-card prod-center" title="Azul: Pavilhão de Verão Mini">
+              <img src="/static/box-azul-verao.webp" alt="Caixa do jogo Azul: Pavilhão de Verão Mini">
+            </div>
+            <div class="meli-prod-card prod-right" title="Azul Mini - Galápagos">
+              <img src="/static/box-azul-mini.webp" alt="Caixa do jogo Azul Mini">
+              <span class="meli-discount-pill">-33%</span>
+            </div>
           </div>
-        </div>
+
+          <!-- Texto Principal da Oferta -->
+          <div class="meli-banner-copy">
+            <div class="meli-banner-tags">
+              <span class="meli-tag-ml" data-i18n="ad_tag_store">⚡ MERCADO LIVRE</span>
+              <span class="meli-tag-shipping" data-i18n="ad_tag_shipping">🚚 FRETE GRÁTIS FULL</span>
+            </div>
+            <strong class="meli-banner-headline" data-i18n="ad_title">Ofertas de Boardgames: Azul Pavilhão de Verão &amp; Mais!</strong>
+            <span class="meli-banner-subline" data-i18n="ad_desc">Azul Pavilhão de Verão Mini • Azul Mini (33% OFF) • Trapwords</span>
+          </div>
+
+          <!-- Call to Action (CTA) -->
+          <div class="meli-banner-cta-wrap">
+            <span class="meli-banner-cta">
+              <span data-i18n="ad_cta">Ver Ofertas</span>
+              <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 10h12M11 5l5 5-5 5"/>
+              </svg>
+            </span>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -446,6 +475,6 @@
     </div>
   </div>
 
-  <script src="/static/app.js?v=6"></script>
+  <script src="/static/app.js?v=7"></script>
 </body>
 </html>
