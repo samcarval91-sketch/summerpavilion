@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azul: Pavilhão de Verão - Calculadora de Pontuação</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <link rel="apple-touch-icon" href="/static/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css?v=7">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-badge" data-i18n="brand_badge">Azul Mini</span>
+        <h1 data-i18n="brand_title">Pavilhão de Verão</h1>
+      </div>
+      <div class="header-actions">
+        <button id="btnLangToggle" class="btn-icon lang-btn" title="Mudar Idioma / Change Language">
+          <span class="flag-icon" id="flagIcon" aria-hidden="true">
+            <svg viewBox="0 0 28 20" width="20" height="14" class="country-flag-svg">
+              <rect width="28" height="20" rx="2" fill="#009b3a"/>
+              <polygon points="14,2.2 25.5,10 14,17.8 2.5,10" fill="#fedf00"/>
+              <circle cx="14" cy="10" r="4.6" fill="#002776"/>
+              <path d="M9.6,8.8 Q14,7.4 18.4,10.5" fill="none" stroke="#ffffff" stroke-width="1.1"/>
+            </svg>
+          </span>
+          <span id="lblLangText">Português</span>
+        </button>
+        <button id="btnRulesModal" class="btn-icon" title="Regras Oficiais">📖 <span data-i18n="nav_rules">Regras</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <!-- Espaço Publicitário / Ad Banner Section -->
+    <section class="ad-banner-section card" id="adBannerSection" aria-label="Publicidade">
+      <div class="ad-banner-badge" data-i18n="ad_badge">PUBLICIDADE</div>
+      <div class="ad-banner-slot" id="adBannerSlot">
+        <!-- Insira aqui seu código do Google AdSense (<ins class="adsbygoogle">...) ou banner de parceiro -->
+        <div class="ad-placeholder-content">
+          <span class="ad-placeholder-icon">📢</span>
+          <div class="ad-placeholder-texts">
+            <strong class="ad-placeholder-title" data-i18n="ad_title">Espaço Reservado para Anúncio (728×90 / Responsivo)</strong>
+            <span class="ad-placeholder-desc" data-i18n="ad_desc">Pronto para Google AdSense ou banner de parceiro</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+      <!-- Interactive Board Column -->
+      <section class="board-section card">
+        <div class="section-header">
+          <div>
+            <h3 data-i18n="board_title">Tabuleiro Interativo</h3>
+            <span class="subtext" data-i18n="board_subtext">Toque em qualquer azulejo para alternar preenchido / vazio</span>
+          </div>
+          <button id="btnClearBoard" class="btn btn-ghost btn-sm" data-i18n="btn_clear_board">Limpar Tabuleiro</button>
+        </div>
+
+        <!-- Quick Bonus Series Fill Toolbar -->
+        <div class="bonus-fill-toolbar">
+          <span class="bonus-toolbar-title" data-i18n="bonus_toolbar_title">Preenchimento Rápido por Número:</span>
+          <div class="bonus-btn-group">
+            <button type="button" class="btn-bonus-chip" id="btnBonus1" data-bonus-slot="1">
+              <span class="bonus-badge-circle">1</span>
+              <span class="bonus-chip-lbl" data-i18n="bonus_1_chip">Bônus 1 (+4)</span>
+            </button>
+            <button type="button" class="btn-bonus-chip" id="btnBonus2" data-bonus-slot="2">
+              <span class="bonus-badge-circle">2</span>
+              <span class="bonus-chip-lbl" data-i18n="bonus_2_chip">Bônus 2 (+8)</span>
+            </button>
+            <button type="button" class="btn-bonus-chip" id="btnBonus3" data-bonus-slot="3">
+              <span class="bonus-badge-circle">3</span>
+              <span class="bonus-chip-lbl" data-i18n="bonus_3_chip">Bônus 3 (+12)</span>
+            </button>
+            <button type="button" class="btn-bonus-chip" id="btnBonus4" data-bonus-slot="4">
+              <span class="bonus-badge-circle">4</span>
+              <span class="bonus-chip-lbl" data-i18n="bonus_4_chip">Bônus 4 (+16)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SVG Interactive Board Container -->
+        <div class="board-canvas-wrapper">
+          <svg id="boardSvg" viewBox="0 0 800 800" class="board-svg" preserveAspectRatio="xMidYMid meet">
+            <!-- As estrelas e azulejos serão gerados dinamicamente via JS -->
+          </svg>
+        </div>
+
+        <!-- Tile Usage Counter Card (Losangos por Cor) -->
+        <div class="tile-usage-container">
+          <div class="tile-usage-header">
+            <div class="tile-usage-title-box">
+              <span class="tile-usage-label" data-i18n="tile_usage_label">Azulejos Necessários (Regras do Manual):</span>
+              <span class="tile-usage-subtext" data-i18n="tile_usage_subtext">Espaços 1 a 6 exigem de 1 a 6 azulejos cada (1 colocado + restantes descartados)</span>
+            </div>
+            <div class="tile-usage-totals-box">
+              <span id="lblTotalTilesUsed" class="tile-usage-total" title="Total de azulejos necessários/gastos segundo as regras do manual">0 / 147</span>
+              <span id="lblTotalTilesPlaced" class="tile-usage-placed" data-i18n="tile_total_placed">(0 / 42 no tabuleiro)</span>
+            </div>
+          </div>
+          <div class="tile-usage-grid">
+            <div class="tile-usage-pill" id="pillRed">
+              <span class="rhombus-icon rhombus-red"></span>
+              <span class="pill-name" data-i18n="star_red">Vermelha</span>
+              <span class="pill-val" id="pillValRed"><span class="pill-val-cost">0/21</span> <span class="pill-val-count">(0/6)</span></span>
+            </div>
+            <div class="tile-usage-pill" id="pillBlue">
+              <span class="rhombus-icon rhombus-blue"></span>
+              <span class="pill-name" data-i18n="star_blue">Azul</span>
+              <span class="pill-val" id="pillValBlue"><span class="pill-val-cost">0/21</span> <span class="pill-val-count">(0/6)</span></span>
+            </div>
+            <div class="tile-usage-pill" id="pillYellow">
+              <span class="rhombus-icon rhombus-yellow"></span>
+              <span class="pill-name" data-i18n="star_yellow">Amarela</span>
+              <span class="pill-val" id="pillValYellow"><span class="pill-val-cost">0/21</span> <span class="pill-val-count">(0/6)</span></span>
+            </div>
+            <div class="tile-usage-pill" id="pillGreen">
+              <span class="rhombus-icon rhombus-green"></span>
+              <span class="pill-name" data-i18n="star_green">Verde</span>
+              <span class="pill-val" id="pillValGreen"><span class="pill-val-cost">0/21</span> <span class="pill-val-count">(0/6)</span></span>
+            </div>
+            <div class="tile-usage-pill" id="pillOrange">
+              <span class="rhombus-icon rhombus-orange"></span>
+              <span class="pill-name" data-i18n="star_orange">Laranja</span>
+              <span class="pill-val" id="pillValOrange"><span class="pill-val-cost">0/21</span> <span class="pill-val-count">(0/6)</span></span>
+            </div>
+            <div class="tile-usage-pill" id="pillPurple">
+              <span class="rhombus-icon rhombus-purple"></span>
+              <span class="pill-name" data-i18n="star_purple">Roxa</span>
+              <span class="pill-val" id="pillValPurple"><span class="pill-val-cost">0/21</span> <span class="pill-val-count">(0/6)</span></span>
+            </div>
+            <div class="tile-usage-pill" id="pillCenter">
+              <span class="rhombus-icon rhombus-center"></span>
+              <span class="pill-name" data-i18n="star_center">Centro</span>
+              <span class="pill-val" id="pillValCenter"><span class="pill-val-cost">0/21</span> <span class="pill-val-count">(0/6)</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Board Elements Legend & Interactive Surrounding Bonus Tracker -->
+        <div class="board-legend">
+          <div class="legend-header-row">
+            <span class="legend-header-title" data-i18n="legend_header_title">Espaços Especiais (Marcados automaticamente ao cercar com azulejos):</span>
+            <span id="lblSurroundingTilesEarned" class="surrounding-earned-tag">+0 azulejos bônus</span>
+          </div>
+          <div class="legend-items-row">
+            <div class="legend-item" id="itemLegendWindow" title="Janelas dão 3 azulejos bônus cada">
+              <span class="legend-badge badge-window">+3</span>
+              <span class="legend-desc" data-i18n="legend_window">Janela</span>
+              <span class="legend-counter" id="cntWindows">0/6</span>
+            </div>
+            <div class="legend-item" id="itemLegendStatue" title="Estátuas dão 2 azulejos bônus cada">
+              <span class="legend-badge badge-statue">+2</span>
+              <span class="legend-desc" data-i18n="legend_statue">Estátua</span>
+              <span class="legend-counter" id="cntStatues">0/6</span>
+            </div>
+            <div class="legend-item" id="itemLegendColumn" title="Colunas dão 1 azulejo bônus cada">
+              <span class="legend-badge badge-column">+1</span>
+              <span class="legend-desc" data-i18n="legend_column">Coluna / Pilar</span>
+              <span class="legend-counter" id="cntColumns">0/6</span>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Corner Storage Tiles Control -->
+        <div class="corner-control">
+          <div class="corner-info">
+            <span class="corner-title" data-i18n="corner_title">Cantos de Reserva (Azulejos não utilizados):</span>
+            <span class="corner-subtext" data-i18n="corner_subtext">-1 ponto de penalidade por azulejo restante no fim do jogo</span>
+          </div>
+          <div class="corner-counter">
+            <button id="btnDecCorners" class="btn-step" type="button">-</button>
+            <span id="lblCornersCount" class="corner-number">0</span>
+            <button id="btnIncCorners" class="btn-step" type="button">+</button>
+          </div>
+        </div>
+
+        <!-- Desconto de 1º Jogador do Centro (6 Rodadas em Evidência) -->
+        <div class="first-player-penalty-card" id="firstPlayerPenaltyCard">
+          <div class="fp-penalty-header">
+            <div class="fp-penalty-info">
+              <span class="fp-penalty-title" data-i18n="fp_penalty_title">Desconto de 1º Jogador do Centro (6 Rodadas):</span>
+              <span class="fp-penalty-subtext" data-i18n="fp_penalty_subtext">Pontos perdidos ao pegar o marcador de 1º jogador no centro da mesa em cada rodada</span>
+            </div>
+            <span id="lblFpTotalPenalty" class="fp-total-badge">-0 pts</span>
+          </div>
+          <div class="rounds-penalty-grid" id="roundsPenaltyGrid">
+            <div class="round-penalty-box" data-round-box="1">
+              <span class="round-label" data-i18n="round_1">Rodada 1</span>
+              <div class="round-stepper">
+                <button type="button" class="btn-round-step" data-round="1" data-dir="-1" aria-label="Diminuir penalidade Rodada 1">-</button>
+                <span class="round-penalty-val" id="lblRoundPenalty1">0</span>
+                <button type="button" class="btn-round-step" data-round="1" data-dir="1" aria-label="Aumentar penalidade Rodada 1">+</button>
+              </div>
+            </div>
+            <div class="round-penalty-box" data-round-box="2">
+              <span class="round-label" data-i18n="round_2">Rodada 2</span>
+              <div class="round-stepper">
+                <button type="button" class="btn-round-step" data-round="2" data-dir="-1" aria-label="Diminuir penalidade Rodada 2">-</button>
+                <span class="round-penalty-val" id="lblRoundPenalty2">0</span>
+                <button type="button" class="btn-round-step" data-round="2" data-dir="1" aria-label="Aumentar penalidade Rodada 2">+</button>
+              </div>
+            </div>
+            <div class="round-penalty-box" data-round-box="3">
+              <span class="round-label" data-i18n="round_3">Rodada 3</span>
+              <div class="round-stepper">
+                <button type="button" class="btn-round-step" data-round="3" data-dir="-1" aria-label="Diminuir penalidade Rodada 3">-</button>
+                <span class="round-penalty-val" id="lblRoundPenalty3">0</span>
+                <button type="button" class="btn-round-step" data-round="3" data-dir="1" aria-label="Aumentar penalidade Rodada 3">+</button>
+              </div>
+            </div>
+            <div class="round-penalty-box" data-round-box="4">
+              <span class="round-label" data-i18n="round_4">Rodada 4</span>
+              <div class="round-stepper">
+                <button type="button" class="btn-round-step" data-round="4" data-dir="-1" aria-label="Diminuir penalidade Rodada 4">-</button>
+                <span class="round-penalty-val" id="lblRoundPenalty4">0</span>
+                <button type="button" class="btn-round-step" data-round="4" data-dir="1" aria-label="Aumentar penalidade Rodada 4">+</button>
+              </div>
+            </div>
+            <div class="round-penalty-box" data-round-box="5">
+              <span class="round-label" data-i18n="round_5">Rodada 5</span>
+              <div class="round-stepper">
+                <button type="button" class="btn-round-step" data-round="5" data-dir="-1" aria-label="Diminuir penalidade Rodada 5">-</button>
+                <span class="round-penalty-val" id="lblRoundPenalty5">0</span>
+                <button type="button" class="btn-round-step" data-round="5" data-dir="1" aria-label="Aumentar penalidade Rodada 5">+</button>
+              </div>
+            </div>
+            <div class="round-penalty-box" data-round-box="6">
+              <span class="round-label" data-i18n="round_6">Rodada 6</span>
+              <div class="round-stepper">
+                <button type="button" class="btn-round-step" data-round="6" data-dir="-1" aria-label="Diminuir penalidade Rodada 6">-</button>
+                <span class="round-penalty-val" id="lblRoundPenalty6">0</span>
+                <button type="button" class="btn-round-step" data-round="6" data-dir="1" aria-label="Aumentar penalidade Rodada 6">+</button>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="inpExtraPenalty" value="0">
+        </div>
+      </section>
+
+      <!-- Score Card Column -->
+      <section class="score-section card">
+        <div class="total-score-card">
+          <span class="score-label" data-i18n="score_title">Pontuação Total</span>
+          <div class="score-value-wrapper">
+            <span id="lblTotalScore" class="total-score-number">0</span>
+            <span class="pts-tag" data-i18n="score_unit">pontos</span>
+          </div>
+        </div>
+
+        <!-- Score Breakdown Accordion / List -->
+        <div class="breakdown-list">
+          <!-- Placement Score -->
+          <div class="breakdown-item">
+            <div class="breakdown-header">
+              <span class="item-title" data-i18n="breakdown_placement">Pontos de Colocação (Adjacência)</span>
+              <span id="lblPlacementScore" class="item-value">+0 pts</span>
+            </div>
+            <div id="starBreakdownDetails" class="star-details-grid">
+              <!-- Detalhes por estrela -->
+            </div>
+          </div>
+
+          <!-- Star Completion Bonuses -->
+          <div class="breakdown-item">
+            <div class="breakdown-header">
+              <span class="item-title" data-i18n="breakdown_stars">Bônus de Estrelas Completas</span>
+              <span id="lblStarBonus" class="item-value">+0 pts</span>
+            </div>
+            <div id="completedStarsTags" class="badge-list">
+              <span class="badge badge-muted" data-i18n="no_completed_stars">Nenhuma estrela completa</span>
+            </div>
+          </div>
+
+          <!-- Number Completion Bonuses -->
+          <div class="breakdown-item">
+            <div class="breakdown-header">
+              <span class="item-title" data-i18n="breakdown_numbers">Bônus de Números (1 a 4 em todas as 7 estrelas)</span>
+              <span id="lblNumberBonus" class="item-value">+0 pts</span>
+            </div>
+            <div id="completedNumbersTags" class="badge-list">
+              <span class="badge badge-muted" data-i18n="no_completed_numbers">Nenhum conjunto numérico completo</span>
+            </div>
+          </div>
+
+          <!-- Penalties -->
+          <div class="breakdown-item penalty-item">
+            <div class="breakdown-header">
+              <span class="item-title" data-i18n="breakdown_penalties">Penalidades</span>
+              <span id="lblPenalties" class="item-value">-0 pts</span>
+            </div>
+            <div id="penaltiesDetails" class="penalties-details">
+              <span>Cantos: 0 azulejos (-0 pts)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multiplayer / Players Board Action -->
+        <div class="player-management">
+          <div class="player-input-row">
+            <input type="text" id="inpPlayerName" placeholder="Nome do Jogador" value="Jogador 1" class="input-text">
+            <button id="btnSavePlayer" class="btn btn-primary" data-i18n="btn_save_player">Salvar no Placar</button>
+          </div>
+          
+          <div id="leaderboardContainer" class="leaderboard hidden">
+            <div class="leaderboard-header">
+              <h4 data-i18n="leaderboard_title">🏆 Placar da Mesa</h4>
+              <button id="btnClearLeaderboard" class="btn btn-ghost btn-sm" data-i18n="btn_clear_leaderboard">Limpar Placar</button>
+            </div>
+            <ul id="leaderboardList" class="leaderboard-list"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Seção Sobre / Aviso Legal -->
+    <footer class="about-section card" id="aboutSection">
+      <h4 class="about-title" data-i18n="about_title">Sobre</h4>
+      <p class="about-text" data-i18n="about_text">
+        Ferramenta independente criada por um fã e entusiasta para auxiliar na contagem de pontos de Azul: Pavilhão de Verão (criado por Michael Kiesling). Este site não possui vínculo oficial, patrocínio ou afiliação com a Next Move Games, Plan B Games, Asmodee ou Galápagos Jogos.
+      </p>
+    </footer>
+  </main>
+
+  <!-- Rules Modal -->
+  <div id="rulesModal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content card">
+      <div class="modal-header">
+        <h3 id="rulesModalTitle" data-i18n="rules_modal_title">Regras Oficiais de Pontuação (Pavilhão de Verão)</h3>
+        <button id="btnCloseRules" class="btn-close">&times;</button>
+      </div>
+      <div class="modal-body" id="rulesModalBody">
+        <!-- Preenchido dinamicamente via JS de acordo com o idioma -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal (Gemini API Key) -->
+  <div id="settingsModal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content card">
+      <div class="modal-header">
+        <h3 data-i18n="settings_title">⚙️ Configurações de IA</h3>
+        <button id="btnCloseSettings" class="btn-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="setting-group">
+          <label for="inpGeminiKey" class="setting-label" data-i18n="settings_key_label">Chave de API Google Gemini (Opcional):</label>
+          <input type="password" id="inpGeminiKey" class="input-text" placeholder="AIzaSy..." autocomplete="off">
+          <p class="setting-help" data-i18n="settings_key_help">
+            Para fotos novas do celular em qualquer ângulo, o sistema pode usar visão computacional do Gemini 2.5 Flash. A chave fica gravada apenas no navegador local.
+          </p>
+        </div>
+        <div class="settings-actions">
+          <button id="btnSaveSettings" class="btn btn-primary" data-i18n="btn_save_settings">Salvar</button>
+          <button id="btnCancelSettings" class="btn btn-ghost" data-i18n="btn_cancel_settings">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js?v=6"></script>
+</body>
+</html>

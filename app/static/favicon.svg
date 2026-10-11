@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="gRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff4d58"/>
+      <stop offset="100%" stop-color="#dc141f"/>
+    </linearGradient>
+    <linearGradient id="gBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="gYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="gGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#bef264"/>
+      <stop offset="100%" stop-color="#65a30d"/>
+    </linearGradient>
+    <linearGradient id="gPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e879f9"/>
+      <stop offset="100%" stop-color="#9333ea"/>
+    </linearGradient>
+    <linearGradient id="gOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Medalhão de fundo azul-marinho e dourado -->
+  <circle cx="32" cy="32" r="30.5" fill="#0f172a" stroke="#f59e0b" stroke-width="2.2"/>
+
+  <!-- 6 Pétalas Losangulares nas cores dos azulejos do Azul: Pavilhão de Verão -->
+  <!-- Vermelho (Topo) -->
+  <polygon points="32,32 24.5,19.0 32,3.5 39.5,19.0" fill="url(#gRed)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+  <!-- Azul (Superior Direito) -->
+  <polygon points="32,32 39.5,19.0 56.7,17.8 47.0,32.0" fill="url(#gBlue)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+  <!-- Amarelo (Inferior Direito) -->
+  <polygon points="32,32 47.0,32.0 56.7,46.2 39.5,45.0" fill="url(#gYellow)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+  <!-- Verde (Base) -->
+  <polygon points="32,32 39.5,45.0 32,60.5 24.5,45.0" fill="url(#gGreen)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+  <!-- Roxo (Inferior Esquerdo) -->
+  <polygon points="32,32 24.5,45.0 7.3,46.2 17.0,32.0" fill="url(#gPurple)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+  <!-- Laranja (Superior Esquerdo) -->
+  <polygon points="32,32 17.0,32.0 7.3,17.8 24.5,19.0" fill="url(#gOrange)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+
+  <!-- Círculo central dourado -->
+  <circle cx="32" cy="32" r="6.8" fill="#0f172a" stroke="#fbbf24" stroke-width="2"/>
+  <circle cx="32" cy="32" r="2.6" fill="#fbbf24"/>
+</svg>

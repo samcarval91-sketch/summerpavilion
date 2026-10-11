@@ -1,0 +1,7 @@
+[build]
+  publish = "app/static"
+
+[[redirects]]
+  from = "/static/*"
+  to = "/:splat"
+  status = 200
