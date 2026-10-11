@@ -575,10 +575,12 @@ body {
   touch-action: manipulation;
 }
 
-/* SVG Tile Elements - Realistic 3D Resin & Authentic Patterns */
+/* SVG Tile Elements - Realistic 3D Resin & Authentic Patterns with Fluid Animation */
 .svg-slot {
   cursor: pointer;
-  transition: fill 0.22s ease, stroke 0.22s ease, filter 0.2s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: filter 0.2s ease, transform 0.14s ease, stroke-width 0.22s ease;
   stroke-width: 1.6;
   fill: #faf6ee;
 }
@@ -587,7 +589,11 @@ body {
   filter: brightness(1.08);
 }
 
-/* Espaços vazios impressos no tabuleiro */
+.svg-slot:active {
+  transform: scale(0.95);
+}
+
+/* Espaços vazios impressos no tabuleiro (permanecem como base sob o azulejo 3D para interpolação fluida) */
 .svg-slot.slot-red    { fill: url(#grad-empty-red);    stroke: #dc2626; }
 .svg-slot.slot-blue   { fill: url(#grad-empty-blue);   stroke: #0284c7; }
 .svg-slot.slot-yellow { fill: url(#grad-empty-yellow); stroke: #d97706; }
@@ -596,62 +602,86 @@ body {
 .svg-slot.slot-purple { fill: url(#grad-empty-purple); stroke: #9333ea; }
 .svg-slot.slot-center { fill: url(#grad-empty-center); stroke: #475569; stroke-width: 1.8; }
 
-/* Azulejos físicos 3D preenchidos */
-.svg-slot.filled-red    { fill: url(#grad-filled-red);    stroke: #7f1d1d; stroke-width: 2.2; filter: url(#tileFilledShadow); }
-.svg-slot.filled-blue   { fill: url(#grad-filled-blue);   stroke: #082f49; stroke-width: 2.2; filter: url(#tileFilledShadow); }
-.svg-slot.filled-yellow { fill: url(#grad-filled-yellow); stroke: #854d0e; stroke-width: 2.2; filter: url(#tileFilledShadow); }
-.svg-slot.filled-green  { fill: url(#grad-filled-green);  stroke: #14532d; stroke-width: 2.2; filter: url(#tileFilledShadow); }
-.svg-slot.filled-orange { fill: url(#grad-filled-orange); stroke: #7c2d12; stroke-width: 2.2; filter: url(#tileFilledShadow); }
-.svg-slot.filled-purple { fill: url(#grad-filled-purple); stroke: #4a044e; stroke-width: 2.2; filter: url(#tileFilledShadow); }
-.svg-slot.filled-center { fill: url(#grad-filled-center); stroke: #f59e0b; stroke-width: 2.4; filter: url(#tileFilledShadow); }
+/* Camada impressa no tabuleiro (visível quando vazio) */
+.tile-ornament .empty-ornament-layer {
+  opacity: 1;
+  transition: opacity 0.22s ease;
+}
 
-/* Chanfro 3D e Ornamentos dos Azulejos */
-.tile-ornament .tile-bevel {
+.tile-ornament.filled .empty-ornament-layer {
+  opacity: 0;
+}
+
+.tile-ornament .tile-bevel-empty {
   fill: none;
   stroke: rgba(0, 0, 0, 0.08);
   stroke-width: 1;
-  transition: all 0.22s ease;
 }
 
-.tile-ornament.filled .tile-bevel {
+/* Camada da peça física 3D de resina (anima com efeito mola 3D ao colocar/remover) */
+.tile-ornament .resin-tile-layer {
+  opacity: 0;
+  transform: scale(0.68);
+  transition:
+    opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform, opacity;
+}
+
+.tile-ornament.filled .resin-tile-layer {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Corpo 3D de resina de cada cor */
+.ornament-red .tile-resin-base    { fill: url(#grad-filled-red);    stroke: #7f1d1d; stroke-width: 2.2; filter: url(#tileFilledShadow); }
+.ornament-blue .tile-resin-base   { fill: url(#grad-filled-blue);   stroke: #082f49; stroke-width: 2.2; filter: url(#tileFilledShadow); }
+.ornament-yellow .tile-resin-base { fill: url(#grad-filled-yellow); stroke: #854d0e; stroke-width: 2.2; filter: url(#tileFilledShadow); }
+.ornament-green .tile-resin-base  { fill: url(#grad-filled-green);  stroke: #14532d; stroke-width: 2.2; filter: url(#tileFilledShadow); }
+.ornament-orange .tile-resin-base { fill: url(#grad-filled-orange); stroke: #7c2d12; stroke-width: 2.2; filter: url(#tileFilledShadow); }
+.ornament-purple .tile-resin-base { fill: url(#grad-filled-purple); stroke: #4a044e; stroke-width: 2.2; filter: url(#tileFilledShadow); }
+.ornament-center .tile-resin-base { fill: url(#grad-filled-center); stroke: #f59e0b; stroke-width: 2.4; filter: url(#tileFilledShadow); }
+
+/* Chanfro 3D da peça de resina */
+.tile-ornament .resin-tile-layer .tile-bevel {
   fill: url(#tileGlossGrad);
   stroke: url(#bevelEdgeGrad);
   stroke-width: 1.8;
 }
 
 /* Ornamentos no estado Vazio (impresso no tabuleiro) */
-.ornament-red .orn-inner    { fill: rgba(254, 202, 202, 0.65); stroke: #dc2626; stroke-width: 1.1; }
-.ornament-yellow .orn-inner { fill: rgba(254, 249, 195, 0.75); stroke: #d97706; stroke-width: 1.1; }
-.ornament-purple .orn-inner { fill: rgba(243, 232, 255, 0.65); stroke: #9333ea; stroke-width: 1.1; }
-.ornament-center .orn-inner { fill: rgba(241, 245, 249, 0.75); stroke: #64748b; stroke-width: 1.1; }
+.ornament-red .empty-ornament-layer .orn-inner    { fill: rgba(254, 202, 202, 0.65); stroke: #dc2626; stroke-width: 1.1; }
+.ornament-yellow .empty-ornament-layer .orn-inner { fill: rgba(254, 249, 195, 0.75); stroke: #d97706; stroke-width: 1.1; }
+.ornament-purple .empty-ornament-layer .orn-inner { fill: rgba(243, 232, 255, 0.65); stroke: #9333ea; stroke-width: 1.1; }
+.ornament-center .empty-ornament-layer .orn-inner { fill: rgba(241, 245, 249, 0.75); stroke: #64748b; stroke-width: 1.1; }
 
-.ornament-blue .orn-outer   { fill: rgba(7, 89, 133, 0.78); }
-.ornament-blue .orn-inner   { fill: #bae6fd; stroke: #075985; stroke-width: 1.4; }
-.ornament-blue .orn-core    { fill: transparent; }
+.ornament-blue .empty-ornament-layer .orn-outer   { fill: rgba(7, 89, 133, 0.78); }
+.ornament-blue .empty-ornament-layer .orn-inner   { fill: #bae6fd; stroke: #075985; stroke-width: 1.4; }
+.ornament-blue .empty-ornament-layer .orn-core    { fill: transparent; }
 
-.ornament-orange .orn-outer { fill: rgba(124, 45, 18, 0.8); }
-.ornament-orange .orn-inner { fill: #fed7aa; stroke: #7c2d12; stroke-width: 1.2; }
-.ornament-orange .orn-core  { fill: transparent; }
+.ornament-orange .empty-ornament-layer .orn-outer { fill: rgba(124, 45, 18, 0.8); }
+.ornament-orange .empty-ornament-layer .orn-inner { fill: #fed7aa; stroke: #7c2d12; stroke-width: 1.2; }
+.ornament-orange .empty-ornament-layer .orn-core  { fill: transparent; }
 
-.ornament-green .orn-outer  { fill: #ecfccb; stroke: #365314; stroke-width: 1.8; }
-.ornament-green .orn-core   { fill: transparent; }
+.ornament-green .empty-ornament-layer .orn-outer  { fill: #ecfccb; stroke: #365314; stroke-width: 1.8; }
+.ornament-green .empty-ornament-layer .orn-core   { fill: transparent; }
 
 /* Ornamentos no estado Preenchido (azulejo de resina real) */
-.ornament-red.filled .orn-inner    { fill: rgba(255, 180, 180, 0.16); stroke: rgba(255, 255, 255, 0.42); stroke-width: 1.2; }
-.ornament-yellow.filled .orn-inner { fill: rgba(255, 255, 255, 0.24); stroke: rgba(255, 255, 255, 0.6);  stroke-width: 1.2; }
-.ornament-purple.filled .orn-inner { fill: rgba(255, 190, 240, 0.16); stroke: rgba(255, 255, 255, 0.42); stroke-width: 1.2; }
-.ornament-center.filled .orn-inner { fill: rgba(15, 23, 42, 0.65);    stroke: #f59e0b;                    stroke-width: 1.4; }
+.ornament-red .resin-tile-layer .orn-inner    { fill: rgba(255, 180, 180, 0.16); stroke: rgba(255, 255, 255, 0.42); stroke-width: 1.2; }
+.ornament-yellow .resin-tile-layer .orn-inner { fill: rgba(255, 255, 255, 0.24); stroke: rgba(255, 255, 255, 0.6);  stroke-width: 1.2; }
+.ornament-purple .resin-tile-layer .orn-inner { fill: rgba(255, 190, 240, 0.16); stroke: rgba(255, 255, 255, 0.42); stroke-width: 1.2; }
+.ornament-center .resin-tile-layer .orn-inner { fill: rgba(15, 23, 42, 0.65);    stroke: #f59e0b;                    stroke-width: 1.4; }
 
-.ornament-blue.filled .orn-outer   { fill: #082f49; }
-.ornament-blue.filled .orn-inner   { fill: #38bdf8; stroke: #082f49; stroke-width: 1.6; }
-.ornament-blue.filled .orn-core    { fill: #082f49; }
+.ornament-blue .resin-tile-layer .orn-outer   { fill: #082f49; }
+.ornament-blue .resin-tile-layer .orn-inner   { fill: #38bdf8; stroke: #082f49; stroke-width: 1.6; }
+.ornament-blue .resin-tile-layer .orn-core    { fill: #082f49; }
 
-.ornament-orange.filled .orn-outer { fill: #29150c; }
-.ornament-orange.filled .orn-inner { fill: #ff8c24; stroke: #29150c; stroke-width: 1.3; }
-.ornament-orange.filled .orn-core  { fill: #29150c; }
+.ornament-orange .resin-tile-layer .orn-outer { fill: #29150c; }
+.ornament-orange .resin-tile-layer .orn-inner { fill: #ff8c24; stroke: #29150c; stroke-width: 1.3; }
+.ornament-orange .resin-tile-layer .orn-core  { fill: #29150c; }
 
-.ornament-green.filled .orn-outer  { fill: #bef264; stroke: #14532d; stroke-width: 2.2; }
-.ornament-green.filled .orn-core   { fill: #14532d; stroke: #14532d; stroke-width: 0.6; }
+.ornament-green .resin-tile-layer .orn-outer  { fill: #bef264; stroke: #14532d; stroke-width: 2.2; }
+.ornament-green .resin-tile-layer .orn-core   { fill: #14532d; stroke: #14532d; stroke-width: 0.6; }
 
 .slot-text {
   font-family: 'Cinzel', serif;
@@ -666,7 +696,12 @@ body {
   dominant-baseline: central;
   pointer-events: none;
   user-select: none;
-  transition: fill 0.2s ease, stroke 0.2s ease, font-size 0.2s ease;
+  transform: translate(0px, 0px);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    fill 0.24s ease,
+    stroke 0.24s ease,
+    font-size 0.24s ease;
 }
 
 .slot-text.text-red    { fill: #991b1b; }
@@ -685,6 +720,7 @@ body {
   stroke: rgba(15, 23, 42, 0.88);
   stroke-width: 2.6px;
   stroke-linejoin: round;
+  transform: translate(var(--tx, 0px), var(--ty, 0px));
 }
 
 .star-label-text {

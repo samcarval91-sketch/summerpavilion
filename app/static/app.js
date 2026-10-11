@@ -690,18 +690,16 @@ function initBoardSvg() {
       const tipLblX = scx + rTipLabel * Math.cos(rad);
       const tipLblY = scy + rTipLabel * Math.sin(rad);
 
-      // Ornamento geométrico autêntico + chanfro 3D de resina
-      const ornamentGroup = buildSlotOrnament(starKey, slot, pTip, pRight, pBase, pLeft, lblX, lblY, angDeg);
+      // Ornamento geométrico autêntico + peça 3D de resina com animação fluida
+      const ornamentGroup = buildSlotOrnament(starKey, slot, pTip, pRight, pBase, pLeft, lblX, lblY, angDeg, pointsStr);
       starGroup.appendChild(ornamentGroup);
 
-      // Texto do número dentro do azulejo
+      // Texto do número dentro do azulejo (desliza suavemente via CSS transform)
       const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       text.setAttribute('x', lblX.toFixed(1));
       text.setAttribute('y', lblY.toFixed(1));
-      text.setAttribute('data-empty-x', lblX.toFixed(1));
-      text.setAttribute('data-empty-y', lblY.toFixed(1));
-      text.setAttribute('data-filled-x', tipLblX.toFixed(1));
-      text.setAttribute('data-filled-y', tipLblY.toFixed(1));
+      text.style.setProperty('--tx', `${(tipLblX - lblX).toFixed(1)}px`);
+      text.style.setProperty('--ty', `${(tipLblY - lblY).toFixed(1)}px`);
       text.setAttribute('class', `slot-text text-${starKey}`);
       text.setAttribute('id', `text-${starKey}-${slot}`);
       text.setAttribute('font-size', '16');
@@ -777,16 +775,14 @@ function initBoardSvg() {
     const tipLblY = board_cy + rTipLabel * Math.sin(rad);
 
     // Ornamento geométrico + chanfro 3D da estrela central
-    const ornamentGroup = buildSlotOrnament('center', slot, pTip, pRight, pBase, pLeft, lblX, lblY, angDeg);
+    const ornamentGroup = buildSlotOrnament('center', slot, pTip, pRight, pBase, pLeft, lblX, lblY, angDeg, pointsStr);
     centerGroup.appendChild(ornamentGroup);
 
     const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     text.setAttribute('x', lblX.toFixed(1));
     text.setAttribute('y', lblY.toFixed(1));
-    text.setAttribute('data-empty-x', lblX.toFixed(1));
-    text.setAttribute('data-empty-y', lblY.toFixed(1));
-    text.setAttribute('data-filled-x', tipLblX.toFixed(1));
-    text.setAttribute('data-filled-y', tipLblY.toFixed(1));
+    text.style.setProperty('--tx', `${(tipLblX - lblX).toFixed(1)}px`);
+    text.style.setProperty('--ty', `${(tipLblY - lblY).toFixed(1)}px`);
     text.setAttribute('class', 'slot-text text-center');
     text.setAttribute('id', `text-center-${slot}`);
     text.setAttribute('font-size', '16');
@@ -834,7 +830,7 @@ function initBoardSvg() {
 /**
  * Constrói o grupo SVG de chanfro 3D e ornamento geométrico autêntico de cada azulejo real
  */
-function buildSlotOrnament(starKey, slot, pTip, pRight, pBase, pLeft, lblX, lblY, angDeg) {
+function buildSlotOrnament(starKey, slot, pTip, pRight, pBase, pLeft, lblX, lblY, angDeg, pointsStr) {
   const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   g.setAttribute('id', `ornament-${starKey}-${slot}`);
   g.setAttribute('class', `tile-ornament ornament-${starKey}`);
@@ -896,9 +892,18 @@ function buildSlotOrnament(starKey, slot, pTip, pRight, pBase, pLeft, lblX, lblY
   }
 
   g.innerHTML = `
-    <polygon class="tile-bevel" points="${bevelPts}" stroke-linejoin="round" />
-    <g class="tile-pattern" transform="translate(${lblX.toFixed(1)},${lblY.toFixed(1)}) rotate(${angDeg}) scale(1.22)">
-      ${patternHtml}
+    <g class="empty-ornament-layer">
+      <polygon class="tile-bevel-empty" points="${bevelPts}" stroke-linejoin="round" />
+      <g class="tile-pattern-empty" transform="translate(${lblX.toFixed(1)},${lblY.toFixed(1)}) rotate(${angDeg}) scale(1.22)">
+        ${patternHtml}
+      </g>
+    </g>
+    <g class="resin-tile-layer" style="transform-origin: ${cx.toFixed(1)}px ${cy.toFixed(1)}px">
+      <polygon class="tile-resin-base" points="${pointsStr}" stroke-linejoin="round" />
+      <polygon class="tile-bevel" points="${bevelPts}" stroke-linejoin="round" />
+      <g class="tile-pattern" transform="translate(${lblX.toFixed(1)},${lblY.toFixed(1)}) rotate(${angDeg}) scale(1.22)">
+        ${patternHtml}
+      </g>
     </g>
   `;
   return g;
@@ -1150,18 +1155,10 @@ function updateSvgVisuals() {
       if (set.has(slot)) {
         polygon.className.baseVal = `svg-slot slot-${starKey} ${config.colorClass}`;
         text.className.baseVal = `slot-text text-${starKey} filled`;
-        if (text.dataset.filledX) {
-          text.setAttribute('x', text.dataset.filledX);
-          text.setAttribute('y', text.dataset.filledY);
-        }
         if (ornament) ornament.className.baseVal = `tile-ornament ornament-${starKey} filled`;
       } else {
         polygon.className.baseVal = `svg-slot slot-${starKey}`;
         text.className.baseVal = `slot-text text-${starKey}`;
-        if (text.dataset.emptyX) {
-          text.setAttribute('x', text.dataset.emptyX);
-          text.setAttribute('y', text.dataset.emptyY);
-        }
         if (ornament) ornament.className.baseVal = `tile-ornament ornament-${starKey}`;
       }
     }
