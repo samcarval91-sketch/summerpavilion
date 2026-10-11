@@ -564,9 +564,9 @@ body {
 .board-canvas-wrapper {
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 520px;
   margin: 0 auto 1rem auto;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 650 / 744;
 }
 
 .board-svg {
@@ -1679,24 +1679,17 @@ body {
     padding: 0.45rem 0.5rem;
   }
 
-  /* Expande o tabuleiro no mobile para que as pontas laterais das estrelas fiquem alinhadas com os blocos acima e abaixo */
+  /* Expande o tabuleiro hexagonal no mobile mantendo a moldura 100% visível e alinhando as pontas das estrelas */
   .board-canvas-wrapper {
-    width: calc(100% + 1.8rem);
+    width: calc(100% + 1.5rem);
     max-width: none;
-    margin: 0 -0.9rem 0.85rem -0.9rem;
-    aspect-ratio: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding: 4px 0;
+    margin: 0 -0.75rem 0.75rem -0.75rem;
+    aspect-ratio: 650 / 744;
   }
 
   .board-svg {
-    width: 112.5%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .tile-usage-title-box {

@@ -393,16 +393,18 @@ function initBoardSvg() {
     <filter id="tileFilledShadow" x="-25%" y="-25%" width="150%" height="150%">
       <feDropShadow dx="0" dy="2.5" stdDeviation="2.2" flood-opacity="0.42"/>
     </filter>
-    <radialGradient id="marbleBg" cx="50%" cy="50%" r="50%">
+    <radialGradient id="marbleBg" cx="50%" cy="50%" r="55%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="65%" stop-color="#faf6ee"/>
-      <stop offset="100%" stop-color="#efe5d2"/>
+      <stop offset="68%" stop-color="#faf6ee"/>
+      <stop offset="100%" stop-color="#ede2cc"/>
     </radialGradient>
-    <radialGradient id="woodBorder" cx="50%" cy="50%" r="50%">
-      <stop offset="88%" stop-color="#f5e6c8"/>
-      <stop offset="94%" stop-color="#d4af37"/>
-      <stop offset="100%" stop-color="#1e3a8a"/>
-    </radialGradient>
+    <linearGradient id="goldBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="28%" stop-color="#fde047"/>
+      <stop offset="55%" stop-color="#d4af37"/>
+      <stop offset="82%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
 
     <!-- Gradiente de mármore esculpido para os azulejos de bônus (Pilar, Estátua, Janela) -->
     <linearGradient id="grad-bonus-tile" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -491,42 +493,80 @@ function initBoardSvg() {
   `;
   svg.appendChild(defs);
 
-  // Moldura externa autêntica do tabuleiro português (ajustada rente às pontas das estrelas/janelas r=338.7)
-  const outerRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  outerRing.setAttribute('cx', board_cx);
-  outerRing.setAttribute('cy', board_cy);
-  outerRing.setAttribute('r', '354');
-  outerRing.setAttribute('fill', '#0f172a');
-  outerRing.setAttribute('stroke', '#1e3a8a');
-  outerRing.setAttribute('stroke-width', '3');
-  outerRing.setAttribute('filter', 'url(#boardDropShadow)');
-  svg.appendChild(outerRing);
+  // Helper: gera um hexágono regular (pontas a -90°, -30°, 30°, 90°, 150°, 210°) com cantos suavemente arredondados
+  const buildRoundedHexPath = (cx, cy, R, cornerCut = 12) => {
+    const verts = [];
+    for (let i = 0; i < 6; i++) {
+      const ang = ((-90 + i * 60) * Math.PI) / 180;
+      verts.push({
+        x: cx + R * Math.cos(ang),
+        y: cy + R * Math.sin(ang),
+      });
+    }
+    const parts = [];
+    for (let i = 0; i < 6; i++) {
+      const prev = verts[(i + 5) % 6];
+      const curr = verts[i];
+      const next = verts[(i + 1) % 6];
 
-  const woodRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  woodRing.setAttribute('cx', board_cx);
-  woodRing.setAttribute('cy', board_cy);
-  woodRing.setAttribute('r', '350');
-  woodRing.setAttribute('fill', 'url(#woodBorder)');
-  svg.appendChild(woodRing);
+      const dx1 = prev.x - curr.x;
+      const dy1 = prev.y - curr.y;
+      const len1 = Math.hypot(dx1, dy1);
+      const p1x = curr.x + (dx1 / len1) * cornerCut;
+      const p1y = curr.y + (dy1 / len1) * cornerCut;
 
-  const marbleCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  marbleCircle.setAttribute('cx', board_cx);
-  marbleCircle.setAttribute('cy', board_cy);
-  marbleCircle.setAttribute('r', '345');
-  marbleCircle.setAttribute('fill', 'url(#marbleBg)');
-  marbleCircle.setAttribute('stroke', '#d4af37');
-  marbleCircle.setAttribute('stroke-width', '2');
-  svg.appendChild(marbleCircle);
+      const dx2 = next.x - curr.x;
+      const dy2 = next.y - curr.y;
+      const len2 = Math.hypot(dx2, dy2);
+      const p2x = curr.x + (dx2 / len2) * cornerCut;
+      const p2y = curr.y + (dy2 / len2) * cornerCut;
 
-  const dashedRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  dashedRing.setAttribute('cx', board_cx);
-  dashedRing.setAttribute('cy', board_cy);
-  dashedRing.setAttribute('r', '341');
-  dashedRing.setAttribute('fill', 'none');
-  dashedRing.setAttribute('stroke', '#cbd5e1');
-  dashedRing.setAttribute('stroke-width', '1.5');
-  dashedRing.setAttribute('stroke-dasharray', '6 4');
-  svg.appendChild(dashedRing);
+      if (i === 0) {
+        parts.push(`M ${p1x.toFixed(2)},${p1y.toFixed(2)}`);
+      } else {
+        parts.push(`L ${p1x.toFixed(2)},${p1y.toFixed(2)}`);
+      }
+      parts.push(`Q ${curr.x.toFixed(2)},${curr.y.toFixed(2)} ${p2x.toFixed(2)},${p2y.toFixed(2)}`);
+    }
+    parts.push('Z');
+    return parts.join(' ');
+  };
+
+  // Moldura hexagonal autêntica (acompanha exatamente os 6 lados das estrelas e as 6 pontas das janelas)
+  const outerHex = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  outerHex.setAttribute('d', buildRoundedHexPath(board_cx, board_cy, 366, 18));
+  outerHex.setAttribute('fill', '#0f172a');
+  outerHex.setAttribute('stroke', '#1e3a8a');
+  outerHex.setAttribute('stroke-width', '3');
+  outerHex.setAttribute('filter', 'url(#boardDropShadow)');
+  svg.appendChild(outerHex);
+
+  const goldHex = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  goldHex.setAttribute('d', buildRoundedHexPath(board_cx, board_cy, 360, 16));
+  goldHex.setAttribute('fill', 'url(#goldBorderGrad)');
+  svg.appendChild(goldHex);
+
+  const woodHex = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  woodHex.setAttribute('d', buildRoundedHexPath(board_cx, board_cy, 356, 14));
+  woodHex.setAttribute('fill', '#f5e6c8');
+  woodHex.setAttribute('stroke', '#b45309');
+  woodHex.setAttribute('stroke-width', '0.8');
+  svg.appendChild(woodHex);
+
+  const marbleHex = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  marbleHex.setAttribute('d', buildRoundedHexPath(board_cx, board_cy, 351, 12));
+  marbleHex.setAttribute('fill', 'url(#marbleBg)');
+  marbleHex.setAttribute('stroke', '#d4af37');
+  marbleHex.setAttribute('stroke-width', '1.8');
+  svg.appendChild(marbleHex);
+
+  const dashedHex = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  dashedHex.setAttribute('d', buildRoundedHexPath(board_cx, board_cy, 346, 10));
+  dashedHex.setAttribute('fill', 'none');
+  dashedHex.setAttribute('stroke', '#cbd5e1');
+  dashedHex.setAttribute('stroke-width', '1.5');
+  dashedHex.setAttribute('stroke-dasharray', '6 4');
+  svg.appendChild(dashedHex);
 
   // 1. Desenha as 6 Estátuas (+2) dentro dos azulejos radiais entre estrelas adjacentes (-60°, 0°, 60°, 120°, 180°, -120°)
   const statueRadius = (3 * Math.sqrt(3) / 2) * L; // 176.67px
