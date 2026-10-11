@@ -1679,6 +1679,26 @@ body {
     padding: 0.45rem 0.5rem;
   }
 
+  /* Expande o tabuleiro no mobile para que as pontas laterais das estrelas fiquem alinhadas com os blocos acima e abaixo */
+  .board-canvas-wrapper {
+    width: calc(100% + 1.8rem);
+    max-width: none;
+    margin: 0 -0.9rem 0.85rem -0.9rem;
+    aspect-ratio: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 4px 0;
+  }
+
+  .board-svg {
+    width: 112.5%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+  }
+
   .tile-usage-title-box {
     min-width: 0;
   }

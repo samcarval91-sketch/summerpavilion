@@ -491,28 +491,28 @@ function initBoardSvg() {
   `;
   svg.appendChild(defs);
 
-  // Moldura externa autêntica do tabuleiro português
+  // Moldura externa autêntica do tabuleiro português (ajustada rente às pontas das estrelas/janelas r=338.7)
   const outerRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   outerRing.setAttribute('cx', board_cx);
   outerRing.setAttribute('cy', board_cy);
-  outerRing.setAttribute('r', '396');
+  outerRing.setAttribute('r', '354');
   outerRing.setAttribute('fill', '#0f172a');
   outerRing.setAttribute('stroke', '#1e3a8a');
-  outerRing.setAttribute('stroke-width', '4');
+  outerRing.setAttribute('stroke-width', '3');
   outerRing.setAttribute('filter', 'url(#boardDropShadow)');
   svg.appendChild(outerRing);
 
   const woodRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   woodRing.setAttribute('cx', board_cx);
   woodRing.setAttribute('cy', board_cy);
-  woodRing.setAttribute('r', '384');
+  woodRing.setAttribute('r', '350');
   woodRing.setAttribute('fill', 'url(#woodBorder)');
   svg.appendChild(woodRing);
 
   const marbleCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   marbleCircle.setAttribute('cx', board_cx);
   marbleCircle.setAttribute('cy', board_cy);
-  marbleCircle.setAttribute('r', '366');
+  marbleCircle.setAttribute('r', '345');
   marbleCircle.setAttribute('fill', 'url(#marbleBg)');
   marbleCircle.setAttribute('stroke', '#d4af37');
   marbleCircle.setAttribute('stroke-width', '2');
@@ -521,7 +521,7 @@ function initBoardSvg() {
   const dashedRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
   dashedRing.setAttribute('cx', board_cx);
   dashedRing.setAttribute('cy', board_cy);
-  dashedRing.setAttribute('r', '356');
+  dashedRing.setAttribute('r', '341');
   dashedRing.setAttribute('fill', 'none');
   dashedRing.setAttribute('stroke', '#cbd5e1');
   dashedRing.setAttribute('stroke-width', '1.5');
