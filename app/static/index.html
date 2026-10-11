@@ -86,7 +86,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=13">
+  <link rel="stylesheet" href="/static/style.css?v=14">
 </head>
 <body>
   <!-- Header Bar -->
@@ -428,6 +428,233 @@
       </section>
     </div>
 
+    <!-- Guia Visual de Regras e Estratégias (SEO & Apoio ao Jogador) -->
+    <section class="seo-guide-section card" id="seoGuideSection" aria-labelledby="guideMainTitle">
+      <!-- Separador Decorativo de Azulejos -->
+      <div class="azulejo-divider" aria-hidden="true">
+        <span class="divider-line"></span>
+        <div class="divider-tiles">
+          <span class="rhombus-icon rhombus-red"></span>
+          <span class="rhombus-icon rhombus-orange"></span>
+          <span class="rhombus-icon rhombus-yellow"></span>
+          <span class="rhombus-icon rhombus-center"></span>
+          <span class="rhombus-icon rhombus-green"></span>
+          <span class="rhombus-icon rhombus-blue"></span>
+          <span class="rhombus-icon rhombus-purple"></span>
+        </div>
+        <span class="divider-line"></span>
+      </div>
+
+      <div class="guide-header">
+        <span class="guide-kicker" data-i18n="guide_kicker">GUIA ILUSTRADO DO JOGO</span>
+        <h2 id="guideMainTitle" class="guide-main-title" data-i18n="guide_main_title">Como Contar os Pontos no Azul: Pavilhão de Verão</h2>
+        <p class="guide-subtitle" data-i18n="guide_subtitle">
+          Entenda rapidamente todas as regras oficiais de pontuação, bônus de espaços especiais e as melhores estratégias para vencer suas partidas.
+        </p>
+      </div>
+
+      <!-- Grade de Cards Visuais das Regras -->
+      <div class="guide-cards-grid">
+        <!-- Card 1: Adjacência e Custo -->
+        <article class="guide-card">
+          <div class="guide-card-visual">
+            <svg viewBox="0 0 220 84" class="guide-svg-illustration" aria-hidden="true">
+              <defs>
+                <linearGradient id="gIllRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff3b47"/>
+                  <stop offset="100%" stop-color="#b91c1c"/>
+                </linearGradient>
+              </defs>
+              <!-- 4 azulejos conectados em arco demonstrando grupo de 4 = 10 pts -->
+              <g transform="translate(24,42)">
+                <polygon points="0,-24 18,0 0,24 -18,0" fill="url(#gIllRed)" stroke="#7f1d1d" stroke-width="1.8"/>
+                <polygon points="0,-16 12,0 0,16 -12,0" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+                <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Cinzel,serif" font-weight="800" font-size="12">1</text>
+              </g>
+              <g transform="translate(64,42)">
+                <polygon points="0,-24 18,0 0,24 -18,0" fill="url(#gIllRed)" stroke="#7f1d1d" stroke-width="1.8"/>
+                <polygon points="0,-16 12,0 0,16 -12,0" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+                <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Cinzel,serif" font-weight="800" font-size="12">2</text>
+              </g>
+              <g transform="translate(104,42)">
+                <polygon points="0,-24 18,0 0,24 -18,0" fill="url(#gIllRed)" stroke="#7f1d1d" stroke-width="1.8"/>
+                <polygon points="0,-16 12,0 0,16 -12,0" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+                <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Cinzel,serif" font-weight="800" font-size="12">3</text>
+              </g>
+              <g transform="translate(144,42)">
+                <polygon points="0,-24 18,0 0,24 -18,0" fill="url(#gIllRed)" stroke="#7f1d1d" stroke-width="1.8"/>
+                <polygon points="0,-16 12,0 0,16 -12,0" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2"/>
+                <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="#fff" font-family="Cinzel,serif" font-weight="800" font-size="12">4</text>
+              </g>
+              <rect x="172" y="25" width="42" height="34" rx="8" fill="#1e3a8a"/>
+              <text x="193" y="42" text-anchor="middle" dominant-baseline="central" fill="#fbbf24" font-family="Cinzel,serif" font-weight="800" font-size="13">+10p</text>
+            </svg>
+          </div>
+          <h3 class="guide-card-title" data-i18n="guide_c1_title">1. Pontos de Colocação e Adjacência</h3>
+          <p class="guide-card-text" data-i18n="guide_c1_desc">
+            Para cobrir o espaço de número <strong>N</strong> (1 a 6), você gasta <strong>N azulejos</strong> daquela cor (1 vai para o tabuleiro e os demais para a torre). Cada novo azulejo vale <strong>1 ponto + 1 ponto para cada azulejo conectado</strong> a ele na mesma estrela.
+          </p>
+          <div class="guide-progression-pills">
+            <span class="prog-pill">1 = <strong>1p</strong></span>
+            <span class="prog-pill">2 = <strong>3p</strong></span>
+            <span class="prog-pill">3 = <strong>6p</strong></span>
+            <span class="prog-pill">4 = <strong>10p</strong></span>
+            <span class="prog-pill">5 = <strong>15p</strong></span>
+            <span class="prog-pill">6 = <strong>21p</strong></span>
+          </div>
+        </article>
+
+        <!-- Card 2: Bônus de Estrelas Completas -->
+        <article class="guide-card">
+          <div class="guide-card-visual">
+            <svg viewBox="0 0 220 84" class="guide-svg-illustration" aria-hidden="true">
+              <!-- Mini estrelas/losangos das 7 cores com valores de bônus -->
+              <g transform="translate(110,42)">
+                <circle r="34" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 2"/>
+                <polygon points="0,0 -6,-11 0,-28 6,-11" fill="#dc2626"/>
+                <polygon points="0,0 11,-6 26,-14 14,2" fill="#0284c7"/>
+                <polygon points="0,0 14,2 26,14 11,6" fill="#eab308"/>
+                <polygon points="0,0 6,11 0,28 -6,11" fill="#65a30d"/>
+                <polygon points="0,0 -11,6 -26,14 -14,2" fill="#9333ea"/>
+                <polygon points="0,0 -14,-2 -26,-14 -11,-6" fill="#ea580c"/>
+                <circle r="11" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+                <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="#fbbf24" font-family="Cinzel,serif" font-weight="800" font-size="10">★</text>
+              </g>
+            </svg>
+          </div>
+          <h3 class="guide-card-title" data-i18n="guide_c2_title">2. Bônus de Estrelas Completas</h3>
+          <p class="guide-card-text" data-i18n="guide_c2_desc">
+            Ao preencher todos os <strong>6 espaços</strong> de uma estrela (total de 21 azulejos gastos nela), você ganha imediatamente o bônus estampado no centro da estrela:
+          </p>
+          <div class="guide-star-bonuses-grid">
+            <span class="star-bonus-chip"><i class="rhombus-icon rhombus-center"></i> <span data-i18n="star_center">Centro</span>: <strong>+12</strong></span>
+            <span class="star-bonus-chip"><i class="rhombus-icon rhombus-red"></i> <span data-i18n="star_red">Vermelha</span>: <strong>+14</strong></span>
+            <span class="star-bonus-chip"><i class="rhombus-icon rhombus-blue"></i> <span data-i18n="star_blue">Azul</span>: <strong>+15</strong></span>
+            <span class="star-bonus-chip"><i class="rhombus-icon rhombus-yellow"></i> <span data-i18n="star_yellow">Amarela</span>: <strong>+16</strong></span>
+            <span class="star-bonus-chip"><i class="rhombus-icon rhombus-orange"></i> <span data-i18n="star_orange">Laranja</span>: <strong>+17</strong></span>
+            <span class="star-bonus-chip"><i class="rhombus-icon rhombus-green"></i> <span data-i18n="star_green">Verde</span>: <strong>+18</strong></span>
+            <span class="star-bonus-chip"><i class="rhombus-icon rhombus-purple"></i> <span data-i18n="star_purple">Roxa</span>: <strong>+20</strong></span>
+          </div>
+        </article>
+
+        <!-- Card 3: Espaços Especiais (Pilar, Estátua, Janela) e Números -->
+        <article class="guide-card">
+          <div class="guide-card-visual">
+            <svg viewBox="0 0 240 84" class="guide-svg-illustration" aria-hidden="true">
+              <!-- Pilar (+1) dentro de azulejo -->
+              <g transform="translate(45,42)">
+                <polygon points="0,-32 22,0 0,32 -22,0" fill="#fbf3db" stroke="#a18053" stroke-width="1.6"/>
+                <circle r="11" fill="#1e293b"/>
+                <circle r="9.2" fill="#334155" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="2 1.5"/>
+                <circle r="6" fill="#0284c7" stroke="#38bdf8" stroke-width="1"/>
+                <circle r="3.8" fill="#ffffff"/>
+                <text x="0" y="21" text-anchor="middle" fill="#0f172a" font-weight="800" font-size="9">+1</text>
+              </g>
+              <!-- Estátua (+2) dentro de azulejo -->
+              <g transform="translate(120,42)">
+                <polygon points="0,-32 22,0 0,32 -22,0" fill="#fbf3db" stroke="#a18053" stroke-width="1.6"/>
+                <rect x="-8" y="-12" width="16" height="15" rx="2" fill="#92400e" stroke="#451a03" stroke-width="1"/>
+                <rect x="-5.5" y="-9.5" width="11" height="10" rx="1" fill="#d97706"/>
+                <ellipse cx="0" cy="-1.5" rx="4.5" ry="7.5" fill="#0284c7" stroke="#082f49" stroke-width="1"/>
+                <circle cx="0" cy="7.5" r="3.5" fill="#7dd3fc" stroke="#082f49" stroke-width="1"/>
+                <text x="0" y="22" text-anchor="middle" fill="#0f172a" font-weight="800" font-size="9">+2</text>
+              </g>
+              <!-- Janela (+3) dentro de azulejo -->
+              <g transform="translate(195,42)">
+                <polygon points="0,-32 22,0 0,32 -22,0" fill="#fbf3db" stroke="#a18053" stroke-width="1.6"/>
+                <path d="M -8,8 L -8,-5 C -8,-11 -3.5,-14 0,-16 C 3.5,-14 8,-11 8,-5 L 8,8 Z" fill="#0f2942"/>
+                <rect x="-6.5" y="-3.5" width="2" height="10.5" fill="#f59e0b"/>
+                <rect x="4.5" y="-3.5" width="2" height="10.5" fill="#f59e0b"/>
+                <path d="M -4.5,7 L -4.5,-3.5 C -4.5,-6 0,-7.5 0,-5 C 0,-7.5 4.5,-6 4.5,-3.5 L 4.5,7 Z" fill="#fffdf7" stroke="#d97706" stroke-width="0.8"/>
+                <text x="0" y="21" text-anchor="middle" fill="#0f172a" font-weight="800" font-size="9">+3</text>
+              </g>
+            </svg>
+          </div>
+          <h3 class="guide-card-title" data-i18n="guide_c3_title">3. Espaços Especiais e Bônus de Números</h3>
+          <p class="guide-card-text" data-i18n="guide_c3_desc">
+            Ao cercar todos os espaços adjacentes a um ícone do tabuleiro, você retira <strong>azulejos bônus imediatos</strong> da vitrine: <strong>Pilar (+1)</strong> entre 2, 3 e o centro; <strong>Estátua (+2)</strong> entre 1, 2 e 3, 4; e <strong>Janela (+3)</strong> entre 5 e 6. No fim da partida, cobrir todos os números <strong>1, 2, 3 ou 4</strong> nas 7 estrelas soma <strong>+4, +8, +12 e +16 pontos</strong>!
+          </p>
+        </article>
+      </div>
+
+      <!-- Segundo Separador Decorativo de Azulejos -->
+      <div class="azulejo-divider" aria-hidden="true">
+        <span class="divider-line"></span>
+        <div class="divider-tiles">
+          <span class="rhombus-icon rhombus-purple"></span>
+          <span class="rhombus-icon rhombus-blue"></span>
+          <span class="rhombus-icon rhombus-green"></span>
+          <span class="rhombus-icon rhombus-center"></span>
+          <span class="rhombus-icon rhombus-yellow"></span>
+          <span class="rhombus-icon rhombus-orange"></span>
+          <span class="rhombus-icon rhombus-red"></span>
+        </div>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- Seção de Estratégias Vencedoras -->
+      <div class="strategy-container">
+        <div class="guide-header">
+          <span class="guide-kicker strategy-kicker" data-i18n="strat_kicker">DICAS AVANÇADAS DE JOGO</span>
+          <h2 class="guide-main-title" data-i18n="strat_main_title">4 Estratégias para Vencer no Azul: Pavilhão de Verão</h2>
+        </div>
+
+        <div class="strategy-grid">
+          <div class="strategy-item">
+            <div class="strategy-badge">
+              <span class="rhombus-icon rhombus-yellow"></span>
+              <span>01</span>
+            </div>
+            <div class="strategy-content">
+              <h4 data-i18n="strat_1_title">Foque nos Bônus dos Números 1, 2 e 3 (+24 pts)</h4>
+              <p data-i18n="strat_1_desc">
+                Cobrir todos os espaços 1, 2 e 3 nas 7 estrelas exige poucas peças, constrói a base de conectividade de todas as estrelas e garante <strong>+24 pontos de bônus</strong> (+4, +8 e +12) muito mais fáceis que tentar fechar várias estrelas inteiras.
+              </p>
+            </div>
+          </div>
+
+          <div class="strategy-item">
+            <div class="strategy-badge">
+              <span class="rhombus-icon rhombus-blue"></span>
+              <span>02</span>
+            </div>
+            <div class="strategy-content">
+              <h4 data-i18n="strat_2_title">Crie Efeito Cascata com Pilares (+1) e Estátuas (+2)</h4>
+              <p data-i18n="strat_2_desc">
+                Como Pilares e Estátuas dependem apenas dos números baixos (1 a 4), cerque-os nas primeiras rodadas. Os azulejos extras ganhos na vitrine servem para pegar curingas da rodada seguinte e financiar os espaços caros (5 e 6) das Janelas (+3).
+              </p>
+            </div>
+          </div>
+
+          <div class="strategy-item">
+            <div class="strategy-badge">
+              <span class="rhombus-icon rhombus-green"></span>
+              <span>03</span>
+            </div>
+            <div class="strategy-content">
+              <h4 data-i18n="strat_3_title">Use os 4 Cantos de Reserva para Guardar Curingas</h4>
+              <p data-i18n="strat_3_desc">
+                Olhe sempre a cor curinga da próxima rodada na trilha. Guardar nos cantos de reserva azulejos que vão virar curinga (ou peças de valores 5 e 6) permite fechar grandes grupos de uma só vez. Só lembre de esvaziar os cantos na 6ª rodada!
+              </p>
+            </div>
+          </div>
+
+          <div class="strategy-item">
+            <div class="strategy-badge">
+              <span class="rhombus-icon rhombus-purple"></span>
+              <span>04</span>
+            </div>
+            <div class="strategy-content">
+              <h4 data-i18n="strat_4_title">Pegue o Marcador de 1º Jogador com Poucas Peças</h4>
+              <p data-i18n="strat_4_desc">
+                Evite ser o primeiro a pegar do centro quando houver 5 ou 6 azulejos acumulados. Porém, pegar <strong>1 ou 2 azulejos do centro</strong> (-1 ou -2 pts) para garantir o marcador de 1º jogador vale muito a pena para abrir a rodada seguinte escolhendo a melhor fábrica.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Seção Sobre / Aviso Legal -->
     <footer class="about-section card" id="aboutSection">
       <h4 class="about-title" data-i18n="about_title">Sobre</h4>
@@ -475,6 +702,6 @@
     </div>
   </div>
 
-  <script src="/static/app.js?v=10"></script>
+  <script src="/static/app.js?v=11"></script>
 </body>
 </html>
