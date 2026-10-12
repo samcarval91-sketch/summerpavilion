@@ -841,9 +841,7 @@ body {
   dominant-baseline: central;
   pointer-events: none;
   user-select: none;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: translate(0px, 0px) scale(1);
+  transform: translate(0px, 0px);
   transition:
     transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
     fill 0.16s ease,
@@ -859,13 +857,14 @@ body {
 .slot-text.text-center { fill: #334155; }
 
 .slot-text.filled {
+  font-size: 11px;
   fill: #ffffff;
   font-weight: 900;
   paint-order: stroke;
   stroke: rgba(15, 23, 42, 0.88);
-  stroke-width: 3.6px;
+  stroke-width: 2.6px;
   stroke-linejoin: round;
-  transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.69);
+  transform: translate(var(--tx, 0px), var(--ty, 0px));
 }
 
 .star-label-text {
