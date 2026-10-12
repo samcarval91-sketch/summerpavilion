@@ -113,58 +113,99 @@ const I18N = {
     extra_penalty_label: '1º Jogador: -{0} pts',
     about_title: 'Sobre',
     about_text: 'Ferramenta independente criada por um fã e entusiasta para auxiliar na contagem de pontos de Azul: Pavilhão de Verão (criado por Michael Kiesling). Este site não possui vínculo oficial, patrocínio ou afiliação com a Next Move Games, Plan B Games, Asmodee ou Galápagos Jogos.',
-    guide_kicker: 'GUIA ILUSTRADO DO JOGO',
-    guide_main_title: 'Como Contar os Pontos no Azul: Pavilhão de Verão',
-    guide_subtitle: 'Entenda rapidamente todas as regras oficiais de pontuação, bônus de espaços especiais e as melhores estratégias para vencer suas partidas.',
+    guide_kicker: 'GUIA RÁPIDO',
+    guide_main_title: 'Como Jogar e Contar os Pontos no Azul: Pavilhão de Verão',
+    guide_subtitle: 'Entenda rapidamente as regras de compra e colocação de azulejos segundo o manual, a pontuação de bônus e as melhores estratégias para vencer.',
+    phase1_badge: 'FASE I • COMPRA',
+    phase1_title: 'Adquirir Azulejos (Fábricas, Centro e Curinga)',
+    phase1_r1: '<strong>1. Escolha 1 Cor:</strong> Na sua vez, escolha uma Fábrica ou o Centro da mesa e pegue <strong>todos os azulejos de uma única cor</strong> (não é permitido escolher a cor curinga diretamente).',
+    phase1_r2: '<strong>2. Bônus de +1 Curinga:</strong> Se naquele local houver azulejo(s) da <strong>cor curinga da rodada</strong>, você <strong>deve pegar 1 azulejo curinga extra</strong> gratuitamente. <em>(Exceção: se só restarem curingas no local, pegue apenas 1 curinga).</em>',
+    phase1_r3: '<strong>3. Centro e 1º Jogador:</strong> Os azulejos restantes da Fábrica vão para o centro. O primeiro jogador a comprar do centro pega o marcador de <strong>1º Jogador</strong> e perde <strong>-1 ponto por azulejo pego</strong> nessa compra.',
+    wild_track_label: 'Cor Curinga por Rodada:',
+    phase2_badge: 'FASE II • COLOCAÇÃO',
+    phase2_title: 'Colocar no Tabuleiro e Cantos de Reserva',
+    phase2_r1: '<strong>1. Estrelas Coloridas (1 a 6):</strong> Para cobrir o espaço <strong>N</strong>, pague <strong>N azulejos</strong> (<strong>1 vai para o tabuleiro</strong> e <strong>N - 1 vão para o depósito</strong>). Você pode completar o custo com curingas da rodada, desde que use <strong>ao menos 1 azulejo da cor da estrela</strong>.',
+    phase2_r2: '<strong>2. Estrela Central (Multicolorida):</strong> Pague <strong>N azulejos de uma mesma cor</strong> (podendo completar com curingas da rodada), mas <strong>sem repetir cores</strong> já colocadas nela — ao final, os 6 espaços terão 6 cores diferentes.',
+    phase2_r3: '<strong>3. Passar e Cantos (Máx. 4):</strong> Ao encerrar sua rodada, guarde até <strong>4 azulejos</strong> nos cantos do tabuleiro para a próxima rodada. Peças excedentes descartadas no depósito (ou que sobrarem no fim da 6ª rodada) descontam <strong>-1 ponto cada</strong>.',
     guide_c1_title: '1. Pontos de Colocação e Adjacência',
-    guide_c1_desc: 'Para cobrir o espaço de número N (1 a 6), você gasta N azulejos daquela cor (1 vai para o tabuleiro e os demais para a torre). Cada novo azulejo vale 1 ponto + 1 ponto para cada azulejo conectado a ele na mesma estrela.',
+    guide_c1_desc: 'Para cobrir o espaço de número <strong>N</strong> (1 a 6), você gasta <strong>N azulejos</strong> daquela cor (1 vai para o tabuleiro e os demais para o depósito). Cada novo azulejo vale <strong>1 ponto + 1 ponto para cada azulejo conectado</strong> a ele na mesma estrela.',
     guide_c2_title: '2. Bônus de Estrelas Completas',
-    guide_c2_desc: 'Ao preencher todos os 6 espaços de uma estrela (total de 21 azulejos gastos nela), você ganha imediatamente o bônus estampado no centro da estrela:',
+    guide_c2_desc: 'Ao preencher todos os <strong>6 espaços</strong> de uma estrela (total de 21 azulejos gastos nela), você ganha imediatamente o bônus estampado no centro da estrela:',
     guide_c3_title: '3. Espaços Especiais e Bônus de Números',
-    guide_c3_desc: 'Ao cercar todos os espaços adjacentes a um ícone do tabuleiro, você retira azulejos bônus imediatos da vitrine: Pilar (+1) entre 2, 3 e o centro; Estátua (+2) entre 1, 2 e 3, 4; e Janela (+3) entre 5 e 6. No fim da partida, cobrir todos os números 1, 2, 3 ou 4 nas 7 estrelas soma +4, +8, +12 e +16 pontos!',
-    strat_kicker: 'DICAS AVANÇADAS DE JOGO',
-    strat_main_title: '4 Estratégias para Vencer no Azul: Pavilhão de Verão',
+    guide_c3_desc: 'Ao cercar todos os espaços adjacentes a um ícone do tabuleiro, você retira <strong>azulejos bônus imediatos</strong> da vitrine: <strong>Pilar (+1)</strong> entre 2, 3 e o centro; <strong>Estátua (+2)</strong> entre 1, 2 e 3, 4; e <strong>Janela (+3)</strong> entre 5 e 6. No fim da partida, cobrir todos os números <strong>1, 2, 3 ou 4</strong> nas 7 estrelas soma <strong>+4, +8, +12 e +16 pontos</strong>!',
+    strat_kicker: 'DICAS',
+    strat_main_title: '5 Estratégias para Vencer no Azul: Pavilhão de Verão',
     strat_1_title: 'Foque nos Bônus dos Números 1, 2 e 3 (+24 pts)',
-    strat_1_desc: 'Cobrir todos os espaços 1, 2 e 3 nas 7 estrelas exige poucas peças, constrói a base de conectividade de todas as estrelas e garante +24 pontos de bônus (+4, +8 e +12) muito mais fáceis que tentar fechar várias estrelas inteiras.',
+    strat_1_desc: 'Cobrir todos os espaços 1, 2 e 3 nas 7 estrelas exige poucas peças, constrói a base de conectividade de todas as estrelas e garante <strong>+24 pontos de bônus</strong> (+4, +8 e +12) muito mais fáceis que tentar fechar várias estrelas inteiras.',
     strat_2_title: 'Crie Efeito Cascata com Pilares (+1) e Estátuas (+2)',
     strat_2_desc: 'Como Pilares e Estátuas dependem apenas dos números baixos (1 a 4), cerque-os nas primeiras rodadas. Os azulejos extras ganhos na vitrine servem para pegar curingas da rodada seguinte e financiar os espaços caros (5 e 6) das Janelas (+3).',
     strat_3_title: 'Use os 4 Cantos de Reserva para Guardar Curingas',
     strat_3_desc: 'Olhe sempre a cor curinga da próxima rodada na trilha. Guardar nos cantos de reserva azulejos que vão virar curinga (ou peças de valores 5 e 6) permite fechar grandes grupos de uma só vez. Só lembre de esvaziar os cantos na 6ª rodada!',
     strat_4_title: 'Pegue o Marcador de 1º Jogador com Poucas Peças',
-    strat_4_desc: 'Evite ser o primeiro a pegar do centro quando houver 5 ou 6 azulejos acumulados. Porém, pegar 1 ou 2 azulejos do centro (-1 ou -2 pts) para garantir o marcador de 1º jogador vale muito a pena para abrir a rodada seguinte escolhendo a melhor fábrica.',
-    rules_modal_title: 'Regras Oficiais de Pontuação (Pavilhão de Verão)',
+    strat_4_desc: 'Evite ser o primeiro a pegar do centro quando houver 5 ou 6 azulejos acumulados. Porém, pegar <strong>1 ou 2 azulejos do centro</strong> (-1 ou -2 pts) para garantir o marcador de 1º jogador vale muito a pena para abrir a rodada seguinte escolhendo a melhor fábrica.',
+    strat_5_title: 'Planeje pela Quantidade de Azulejos na Partida',
+    strat_5_2p_title: '👥 2 Jogadores',
+    strat_5_2p_math: '5 Fábricas × 4 Azulejos × 6 rodadas',
+    strat_5_2p_res: 'Total: <strong>120 azulejos</strong> <span class="econ-sep">|</span> Média: <strong>60 / jogador</strong>',
+    strat_5_3p_title: '👥 3 Jogadores',
+    strat_5_3p_math: '7 Fábricas × 4 Azulejos × 6 rodadas',
+    strat_5_3p_res: 'Total: <strong>168 azulejos</strong> <span class="econ-sep">|</span> Média: <strong>56 / jogador</strong>',
+    strat_5_4p_title: '👥 4 Jogadores',
+    strat_5_4p_math: '9 Fábricas × 4 Azulejos × 6 rodadas',
+    strat_5_4p_res: 'Total: <strong>216 azulejos</strong> <span class="econ-sep">|</span> Média: <strong>54 / jogador</strong>',
+    strat_5_conclusion: '🎯 <strong>Planeje de acordo:</strong> para preencher todos os números de <strong>1 a 4</strong> são necessários <strong>70 azulejos</strong> <span class="econ-sep">•</span> com <strong>15 azulejos de bônus</strong>, seriam necessários no mínimo <strong>55 azulejos comprados</strong>!',
+    btn_open_manual_photos: '📖 Ver Fotos do Manual Oficial (Págs. 2 a 11)',
+    rules_modal_title: 'Regras Oficiais do Manual (Pavilhão de Verão)',
     rules_content: `
-      <h4>1. Pontuação de Colocação (Páginas 6-8):</h4>
-      <p>Ao colocar um azulejo em uma estrela, o jogador pontua 1 ponto por esse azulejo mais 1 ponto para cada azulejo conectado a ele no mesmo grupo contíguo. Assim, um grupo contíguo de tamanho <em>k</em> concede <code>k * (k + 1) / 2</code> pontos (1 azulejo = 1 pt, 2 = 3 pts, 3 = 6 pts, 4 = 10 pts, 5 = 15 pts, 6 = 21 pts).</p>
-      
-      <h4>2. Bônus de Estrelas Completas (Página 9):</h4>
+      <h4>Fase I — Compra de Azulejos (Páginas 4-5):</h4>
       <ul>
-        <li><strong>Multicolorida (Centro):</strong> 12 pontos</li>
-        <li><strong>Vermelha:</strong> 14 pontos</li>
-        <li><strong>Azul:</strong> 15 pontos</li>
-        <li><strong>Amarela:</strong> 16 pontos</li>
-        <li><strong>Laranja:</strong> 17 pontos</li>
-        <li><strong>Verde:</strong> 18 pontos</li>
-        <li><strong>Roxa:</strong> 20 pontos</li>
-      </ul>
-      <p><em>(Em um jogo normal, é comum completar 1 ou no máximo 2 estrelas).</em></p>
-
-      <h4>3. Bônus por Cobrir Todos os Números (Página 9):</h4>
-      <ul>
-        <li>Cobrir todos os <strong>1</strong> em todas as 7 estrelas: <strong>4 pontos</strong></li>
-        <li>Cobrir todos os <strong>2</strong> em todas as 7 estrelas: <strong>8 pontos</strong></li>
-        <li>Cobrir todos os <strong>3</strong> em todas as 7 estrelas: <strong>12 pontos</strong></li>
-        <li>Cobrir todos os <strong>4</strong> em todas as 7 estrelas: <strong>16 pontos</strong></li>
+        <li><strong>Escolha 1 Cor:</strong> Escolha uma Fábrica (ou o Centro da mesa) e pegue <strong>todos os azulejos de uma única cor</strong> (não é permitido escolher a cor curinga diretamente).</li>
+        <li><strong>Bônus de +1 Curinga:</strong> Se naquele local houver azulejo(s) da <strong>cor curinga da rodada</strong>, pegue obrigatoriamente <strong>1 azulejo curinga extra</strong>. Se só restarem curingas no local, pegue apenas 1 curinga.</li>
+        <li><strong>Centro e 1º Jogador:</strong> As sobras da Fábrica vão para o centro. O 1º a comprar do centro pega o marcador de 1º Jogador e perde <strong>1 ponto por azulejo pego</strong> nessa compra.</li>
       </ul>
 
-      <h4>4. Penalidade de Cantos (Página 9):</h4>
-      <p>Cada azulejo não utilizado restante nos 4 cantos do tabuleiro desconta <strong>1 ponto</strong>.</p>
+      <h4>Fase II — Colocação e Cantos de Reserva (Páginas 6-7):</h4>
+      <ul>
+        <li><strong>Estrelas Coloridas (1 a 6):</strong> Para cobrir o espaço <em>N</em>, pague <strong><em>N</em> azulejos</strong> (1 fica no tabuleiro e <em>N - 1</em> vão para o depósito). Pode completar com curingas da rodada usando ao menos 1 da cor da estrela.</li>
+        <li><strong>Estrela Central (Multicolorida):</strong> Pague <em>N</em> azulejos de uma mesma cor (+ curingas opcionais), sem repetir cores já presentes na estrela central.</li>
+        <li><strong>Cantos de Reserva:</strong> Ao passar, guarde até <strong>4 azulejos</strong> nos cantos para a próxima rodada. Peças excedentes descartadas (ou restantes no fim da 6ª rodada) descontam <strong>1 ponto cada</strong>.</li>
+      </ul>
 
-      <h4>5. Espaços Especiais ao Redor:</h4>
-      <p>As <strong>Janelas (+3)</strong> ficam sempre posicionadas entre os azulejos 05 e 06. As <strong>Colunas (+1)</strong> ficam no meio do caminho entre a estrela central e a estrela externa. As <strong>Estátuas (+2)</strong> ficam nos vértices entre duas estrelas adjacentes. Ao cercar esses espaços, o jogador ganha azulejos bônus de reserva imediatos.</p>
+      <h4>Pontuação e Bônus (Páginas 6-9):</h4>
+      <ul>
+        <li><strong>Colocação (Adjacência):</strong> 1 pt pelo azulejo colocado + 1 pt por cada azulejo conectado a ele na mesma estrela (1=1p, 2=3p, 3=6p, 4=10p, 5=15p, 6=21p).</li>
+        <li><strong>Estrelas Completas (6 espaços):</strong> Centro (+12), Vermelha (+14), Azul (+15), Amarela (+16), Laranja (+17), Verde (+18) e Roxa (+20).</li>
+        <li><strong>Todos os Números Cobertos (7 estrelas):</strong> Todos os 1 (+4p), 2 (+8p), 3 (+12p) e 4 (+16p).</li>
+        <li><strong>Espaços Especiais Cercados:</strong> Coluna/Pilar (+1 azulejo), Estátua (+2 azulejos) e Janela (+3 azulejos).</li>
+      </ul>
 
-      <h4>6. Custo de Azulejos Segundo o Manual (Página 6):</h4>
-      <p>Cobrir um espaço numerado <em>N</em> (de 1 a 6) requer pagar <strong><em>N</em> azulejos</strong> da cor correspondente (1 azulejo é fixado no tabuleiro e os outros <em>N - 1</em> são descartados na torre). Para completar uma estrela inteira são necessários <code>1 + 2 + 3 + 4 + 5 + 6 = 21</code> azulejos (e 147 azulejos no total do tabuleiro).</p>
+      <div class="manual-gallery-section" id="manualPhotosGallery">
+        <div class="manual-gallery-header">
+          <h4>📸 Fotos do Manual Oficial (Clique na imagem para ampliar em tela cheia)</h4>
+        </div>
+        <div class="manual-pages-grid">
+          <a href="/static/manual/p2_3.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Páginas 2 e 3 • Preparação, Componentes e Cor Curinga</span>
+            <img src="/static/manual/p2_3.jpg" alt="Manual Azul Pavilhão de Verão - Páginas 2 e 3" loading="lazy">
+          </a>
+          <a href="/static/manual/p4_5.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Páginas 4 e 5 • Fase I: Compra de Azulejos e Exemplos</span>
+            <img src="/static/manual/p4_5.jpg" alt="Manual Azul Pavilhão de Verão - Páginas 4 e 5" loading="lazy">
+          </a>
+          <a href="/static/manual/p6_7.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Páginas 6 e 7 • Fase II: Colocação, Pontuação e Espaços Especiais</span>
+            <img src="/static/manual/p6_7.jpg" alt="Manual Azul Pavilhão de Verão - Páginas 6 e 7" loading="lazy">
+          </a>
+          <a href="/static/manual/p8_9.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Páginas 8 e 9 • Exemplos de Pontuação e Fim do Jogo</span>
+            <img src="/static/manual/p8_9.jpg" alt="Manual Azul Pavilhão de Verão - Páginas 8 e 9" loading="lazy">
+          </a>
+          <a href="/static/manual/p10_11.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Páginas 10 e 11 • Partida Alternativa (Tabuleiro Cinza)</span>
+            <img src="/static/manual/p10_11.jpg" alt="Manual Azul Pavilhão de Verão - Páginas 10 e 11" loading="lazy">
+          </a>
+        </div>
+      </div>
     `,
   },
   en: {
@@ -246,58 +287,99 @@ const I18N = {
     extra_penalty_label: '1st Player: -{0} pts',
     about_title: 'About',
     about_text: 'Independent fan-made companion tool created to assist with scoring in Azul: Summer Pavilion (designed by Michael Kiesling). This website is not affiliated with, endorsed, or sponsored by Next Move Games, Plan B Games, Asmodee, or Galápagos Jogos.',
-    guide_kicker: 'ILLUSTRATED GAME GUIDE',
-    guide_main_title: 'How to Score in Azul: Summer Pavilion',
-    guide_subtitle: 'Quickly understand all official scoring rules, special space bonuses, and the best strategies to win your games.',
+    guide_kicker: 'QUICK GUIDE',
+    guide_main_title: 'How to Play & Score in Azul: Summer Pavilion',
+    guide_subtitle: 'Quickly understand the official tile drafting and placement rules, bonus scoring, and the best strategies to win.',
+    phase1_badge: 'PHASE I • DRAFTING',
+    phase1_title: 'Acquire Tiles (Factories, Center & Wild Color)',
+    phase1_r1: '<strong>1. Pick 1 Color:</strong> On your turn, choose a Factory or the Center of the table and take <strong>all tiles of a single non-wild color</strong>.',
+    phase1_r2: '<strong>2. Free +1 Wild Bonus:</strong> If there are any tiles of the <strong>round’s wild color</strong> there, you <strong>must also take 1 wild tile</strong> for free. <em>(Exception: if only wild tiles remain there, take just 1 wild tile).</em>',
+    phase1_r3: '<strong>3. Center & 1st Player:</strong> Remaining Factory tiles go to the center. The first player to take from the center takes the <strong>1st Player token</strong> and loses <strong>-1 point per tile taken</strong> in that draft.',
+    wild_track_label: 'Wild Color by Round:',
+    phase2_badge: 'PHASE II • PLACEMENT',
+    phase2_title: 'Place Tiles on Board & Corner Storage',
+    phase2_r1: '<strong>1. Colored Stars (1 to 6):</strong> To cover space <strong>N</strong>, pay <strong>N tiles</strong> (<strong>1 is placed on the board</strong> and <strong>N - 1 go to the supply/tower</strong>). You may combine wild tiles as long as you use <strong>at least 1 tile matching the star’s color</strong>.',
+    phase2_r2: '<strong>2. Center Star (Multicolor):</strong> Pay <strong>N tiles of the same color</strong> (wilds allowed), but <strong>each of the 6 spaces must be a different color</strong>.',
+    phase2_r3: '<strong>3. Pass & Corners (Max 4):</strong> When passing, store up to <strong>4 tiles</strong> in your board corners for next round. Excess discarded tiles (or tiles left after Round 6) cost <strong>-1 point each</strong>.',
     guide_c1_title: '1. Placement & Adjacency Points',
-    guide_c1_desc: 'To cover space N (1 to 6), you spend N tiles of that color (1 is placed on the board and the rest go to the tower). Each placed tile scores 1 point + 1 point for each connected tile in the same star.',
+    guide_c1_desc: 'To cover space <strong>N</strong> (1 to 6), you spend <strong>N tiles</strong> of that color (1 is placed on the board and the rest go to the supply/tower). Each placed tile scores <strong>1 point + 1 point for each connected tile</strong> in the same star.',
     guide_c2_title: '2. Completed Star Bonuses',
-    guide_c2_desc: 'When you fill all 6 spaces of a star (21 total tiles spent on it), you earn the bonus printed in the center of that star:',
+    guide_c2_desc: 'When you fill all <strong>6 spaces</strong> of a star (21 total tiles spent on it), you earn the bonus printed in the center of that star:',
     guide_c3_title: '3. Special Spaces & Number Bonuses',
-    guide_c3_desc: 'Surrounding all spaces adjacent to a board icon grants immediate bonus tiles from the supply: Pillar (+1) between 2, 3 and center; Statue (+2) between 1, 2 and 3, 4; and Window (+3) between 5 and 6. Covering all 1s, 2s, 3s, or 4s across all 7 stars awards +4, +8, +12, and +16 points!',
-    strat_kicker: 'ADVANCED GAME TIPS',
-    strat_main_title: '4 Strategies to Win in Azul: Summer Pavilion',
+    guide_c3_desc: 'Surrounding all spaces adjacent to a board icon grants <strong>immediate bonus tiles</strong> from the supply: <strong>Pillar (+1)</strong> between 2, 3 and center; <strong>Statue (+2)</strong> between 1, 2 and 3, 4; and <strong>Window (+3)</strong> between 5 and 6. Covering all <strong>1s, 2s, 3s, or 4s</strong> across all 7 stars awards <strong>+4, +8, +12, and +16 points</strong>!',
+    strat_kicker: 'TIPS',
+    strat_main_title: '5 Strategies to Win in Azul: Summer Pavilion',
     strat_1_title: 'Target Number Bonuses 1, 2, and 3 (+24 pts)',
-    strat_1_desc: 'Covering all spaces 1, 2, and 3 across the 7 stars requires few tiles, builds connected clusters on every star, and secures +24 bonus points (+4, +8, and +12) much more efficiently than chasing multiple full stars.',
+    strat_1_desc: 'Covering all spaces 1, 2, and 3 across the 7 stars requires few tiles, builds connected clusters on every star, and secures <strong>+24 bonus points</strong> (+4, +8, and +12) much more efficiently than chasing multiple full stars.',
     strat_2_title: 'Chain Combos with Pillars (+1) and Statues (+2)',
     strat_2_desc: 'Because Pillars and Statues only require low numbers (1 to 4), surround them in early rounds. The free bonus tiles you draft help fund expensive Window spaces (5 and 6) later in the game.',
     strat_3_title: 'Save Future Wild Tiles in the 4 Corners',
     strat_3_desc: 'Always check next round’s wild color on the round track. Saving tiles in your 4 corner storage spaces that will become wild next round lets you complete huge clusters—just remember to empty your corners in Round 6!',
     strat_4_title: 'Take the 1st Player Token When the Center is Small',
-    strat_4_desc: 'Avoid being the first to draft from the center when 5 or 6 tiles have accumulated. However, taking 1 or 2 tiles from the center (-1 or -2 pts) to claim the 1st player token is well worth it to get first pick in the next round.',
-    rules_modal_title: 'Official Scoring Rules (Summer Pavilion)',
+    strat_4_desc: 'Avoid being the first to draft from the center when 5 or 6 tiles have accumulated. However, taking <strong>1 or 2 tiles from the center</strong> (-1 or -2 pts) to claim the 1st player token is well worth it to get first pick in the next round.',
+    strat_5_title: 'Plan Around the Tile Count per Player',
+    strat_5_2p_title: '👥 2 Players',
+    strat_5_2p_math: '5 Factories × 4 Tiles × 6 rounds',
+    strat_5_2p_res: 'Total: <strong>120 tiles</strong> <span class="econ-sep">|</span> Avg: <strong>60 / player</strong>',
+    strat_5_3p_title: '👥 3 Players',
+    strat_5_3p_math: '7 Factories × 4 Tiles × 6 rounds',
+    strat_5_3p_res: 'Total: <strong>168 tiles</strong> <span class="econ-sep">|</span> Avg: <strong>56 / player</strong>',
+    strat_5_4p_title: '👥 4 Players',
+    strat_5_4p_math: '9 Factories × 4 Tiles × 6 rounds',
+    strat_5_4p_res: 'Total: <strong>216 tiles</strong> <span class="econ-sep">|</span> Avg: <strong>54 / player</strong>',
+    strat_5_conclusion: '🎯 <strong>Plan accordingly:</strong> filling all numbers <strong>1 to 4</strong> requires <strong>70 tiles</strong> <span class="econ-sep">•</span> even with <strong>15 bonus tiles</strong>, you still need at least <strong>55 drafted tiles</strong>!',
+    btn_open_manual_photos: '📖 View Official Rulebook Photos (Pages 2 to 11)',
+    rules_modal_title: 'Official Rulebook Summary (Summer Pavilion)',
     rules_content: `
-      <h4>1. Placement Scoring (Pages 6-8):</h4>
-      <p>When placing a tile on a star, score 1 point for that tile plus 1 point for each adjacent tile connected to it in the same star group. A contiguous cluster of size <em>k</em> awards <code>k * (k + 1) / 2</code> points (1 tile = 1 pt, 2 = 3 pts, 3 = 6 pts, 4 = 10 pts, 5 = 15 pts, 6 = 21 pts).</p>
-      
-      <h4>2. Completed Star Bonuses (Page 9):</h4>
+      <h4>Phase I — Acquiring Tiles (Pages 4-5):</h4>
       <ul>
-        <li><strong>Multicolor (Center):</strong> 12 points</li>
-        <li><strong>Red:</strong> 14 points</li>
-        <li><strong>Blue:</strong> 15 points</li>
-        <li><strong>Yellow:</strong> 16 points</li>
-        <li><strong>Orange:</strong> 17 points</li>
-        <li><strong>Green:</strong> 18 points</li>
-        <li><strong>Purple:</strong> 20 points</li>
-      </ul>
-      <p><em>(In a typical game, players usually complete 1 or at most 2 stars).</em></p>
-
-      <h4>3. Number Completion Bonuses (Page 9):</h4>
-      <ul>
-        <li>Covering all <strong>1</strong>s on all 7 stars: <strong>4 points</strong></li>
-        <li>Covering all <strong>2</strong>s on all 7 stars: <strong>8 points</strong></li>
-        <li>Covering all <strong>3</strong>s on all 7 stars: <strong>12 points</strong></li>
-        <li>Covering all <strong>4</strong>s on all 7 stars: <strong>16 points</strong></li>
+        <li><strong>Pick 1 Color:</strong> Choose a Factory (or the Center) and take <strong>all tiles of a single non-wild color</strong>.</li>
+        <li><strong>Free +1 Wild Bonus:</strong> If there are any tiles of the <strong>round's wild color</strong> there, you must also take <strong>1 wild tile</strong>. If only wild tiles remain there, take just 1 wild tile.</li>
+        <li><strong>Center & 1st Player:</strong> Remaining Factory tiles go to the center. The 1st player to take from the center claims the 1st Player token and loses <strong>1 point per tile taken</strong> in that draft.</li>
       </ul>
 
-      <h4>4. Corner Tile Penalties (Page 9):</h4>
-      <p>Each unused tile remaining in the 4 corner storage spaces deducts <strong>1 point</strong>.</p>
+      <h4>Phase II — Placing Tiles & Corners (Pages 6-7):</h4>
+      <ul>
+        <li><strong>Colored Stars (1 to 6):</strong> To cover space <em>N</em>, pay <strong><em>N</em> tiles</strong> (1 placed on the board and <em>N - 1</em> discarded to the supply/tower). Wild tiles may be combined if at least 1 tile matches the star's color.</li>
+        <li><strong>Center Star (Multicolor):</strong> Pay <em>N</em> tiles of a single color (+ optional wilds), without repeating any color already placed on the center star.</li>
+        <li><strong>Corner Storage:</strong> When passing, keep up to <strong>4 tiles</strong> in your corners for next round. Excess discarded tiles (or tiles left after Round 6) deduct <strong>1 point each</strong>.</li>
+      </ul>
 
-      <h4>5. Surrounding Bonus Spaces:</h4>
-      <p><strong>Windows (+3)</strong> are situated between slots 05 and 06. <strong>Columns (+1)</strong> are placed midway between the center star and outer stars. <strong>Statues (+2)</strong> sit in the valleys between two adjacent stars. Surrounding these grants immediate bonus wild supply tiles.</p>
+      <h4>Scoring & Bonuses (Pages 6-9):</h4>
+      <ul>
+        <li><strong>Placement (Adjacency):</strong> 1 pt for the placed tile + 1 pt per connected tile in the same star (1=1p, 2=3p, 3=6p, 4=10p, 5=15p, 6=21p).</li>
+        <li><strong>Completed Stars (all 6 spaces):</strong> Center (+12), Red (+14), Blue (+15), Yellow (+16), Orange (+17), Green (+18), Purple (+20).</li>
+        <li><strong>All Numbers Covered (7 stars):</strong> All 1s (+4p), 2s (+8p), 3s (+12p), and 4s (+16p).</li>
+        <li><strong>Surrounding Special Spaces:</strong> Column/Pillar (+1 tile), Statue (+2 tiles), Window (+3 tiles).</li>
+      </ul>
 
-      <h4>6. Tile Costs by Rulebook (Page 6):</h4>
-      <p>Placing a tile on numbered space <em>N</em> (from 1 to 6) requires paying <strong><em>N</em> tiles</strong> of that star's color (1 tile is placed on the board and the remaining <em>N - 1</em> tiles are discarded to the tower). Completing an entire star requires <code>1 + 2 + 3 + 4 + 5 + 6 = 21</code> tiles (and 147 tiles for all 7 stars).</p>
+      <div class="manual-gallery-section" id="manualPhotosGallery">
+        <div class="manual-gallery-header">
+          <h4>📸 Official Rulebook Pages (Click any image to open full screen)</h4>
+        </div>
+        <div class="manual-pages-grid">
+          <a href="/static/manual/p2_3.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Pages 2 & 3 • Setup, Components & Wild Color</span>
+            <img src="/static/manual/p2_3.jpg" alt="Azul Summer Pavilion Rulebook - Pages 2 and 3" loading="lazy">
+          </a>
+          <a href="/static/manual/p4_5.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Pages 4 & 5 • Phase I: Drafting Tiles & Examples</span>
+            <img src="/static/manual/p4_5.jpg" alt="Azul Summer Pavilion Rulebook - Pages 4 and 5" loading="lazy">
+          </a>
+          <a href="/static/manual/p6_7.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Pages 6 & 7 • Phase II: Placement, Scoring & Special Spaces</span>
+            <img src="/static/manual/p6_7.jpg" alt="Azul Summer Pavilion Rulebook - Pages 6 and 7" loading="lazy">
+          </a>
+          <a href="/static/manual/p8_9.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Pages 8 & 9 • Scoring Examples & End of Game</span>
+            <img src="/static/manual/p8_9.jpg" alt="Azul Summer Pavilion Rulebook - Pages 8 and 9" loading="lazy">
+          </a>
+          <a href="/static/manual/p10_11.jpg" target="_blank" rel="noopener noreferrer" class="manual-page-card">
+            <span class="manual-page-badge">Pages 10 & 11 • Variant Play (Gray Board Side)</span>
+            <img src="/static/manual/p10_11.jpg" alt="Azul Summer Pavilion Rulebook - Pages 10 and 11" loading="lazy">
+          </a>
+        </div>
+      </div>
     `,
   },
 };
@@ -330,6 +412,7 @@ const appState = {
 document.addEventListener('DOMContentLoaded', () => {
   setLanguage(appState.lang);
   initBoardSvg();
+  initBackgroundDecorStars();
   setupEventListeners();
   renderLeaderboard();
   updateTileUsageCounters();
@@ -355,10 +438,16 @@ function setLanguage(lang) {
   if (flagIcon) flagIcon.innerHTML = FLAG_SVGS[lang] || FLAG_SVGS.pt;
   if (lblLangText) lblLangText.textContent = t.lang_name;
 
-  // Atualiza textos estáticos marcados com data-i18n
+  // Atualiza textos estáticos marcados com data-i18n (preservando destaques HTML como <strong>)
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const key = el.getAttribute('data-i18n');
-    if (t[key]) el.textContent = t[key];
+    if (t[key]) {
+      if (t[key].includes('<')) {
+        el.innerHTML = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    }
   });
 
   // Atualiza placeholder do nome do jogador
@@ -985,6 +1074,105 @@ function buildSlotOrnament(starKey, slot, pTip, pRight, pBase, pLeft, lblX, lblY
     </g>
   `;
   return g;
+}
+
+/**
+ * Renderiza as estrelas decorativas de fundo (.pavilion-bg-decor) com todas as 6 pétalas completas
+ * utilizando exatamente a mesma geometria, chanfros 3D e ornamentos do tabuleiro
+ */
+function initBackgroundDecorStars() {
+  const container = document.getElementById('pavilionBgDecor');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const L = 68;
+  const rPetalCenter = (Math.sqrt(3) / 2) * L; // 58.89px
+  const seamMargin = 0.7;
+  const aRhombus = rPetalCenter - 2 * seamMargin;
+  const bRhombus = 0.5 * L - (2 * seamMargin) / Math.sqrt(3);
+  const rLabel = 61.5;
+  const angles = [-120, -60, 0, 60, 120, 180];
+
+  const colorConfigs = {
+    red:    { stops: ['#ff333d', '#dc141f', '#990912'], stroke: '#7f1d1d' },
+    blue:   { stops: ['#22b8ff', '#0088e0', '#005596'], stroke: '#082f49' },
+    yellow: { stops: ['#ffea85', '#f0c441', '#b88714'], stroke: '#854d0e' },
+    green:  { stops: ['#c2f567', '#84cc16', '#4d7c0f'], stroke: '#14532d' },
+    orange: { stops: ['#ff9429', '#f76707', '#b83906'], stroke: '#7c2d12' },
+    purple: { stops: ['#e3229b', '#b5006e', '#700043'], stroke: '#4a044e' },
+  };
+
+  const decorStars = [
+    { starKey: 'purple', className: 'bg-decor-svg bg-star-top-left' },
+    { starKey: 'red',    className: 'bg-decor-svg bg-star-top-right' },
+    { starKey: 'orange', className: 'bg-decor-svg bg-star-right-mid' },
+    { starKey: 'green',  className: 'bg-decor-svg bg-star-left-mid' },
+    { starKey: 'yellow', className: 'bg-decor-svg bg-star-bottom-left' },
+    { starKey: 'blue',   className: 'bg-decor-svg bg-star-bottom-right' },
+  ];
+
+  decorStars.forEach(({ starKey, className }) => {
+    const cfg = colorConfigs[starKey];
+    const gradId = `bg-grad-${starKey}`;
+    const bevelId = `bg-bevel-${starKey}`;
+    const glossId = `bg-gloss-${starKey}`;
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', className);
+    svg.setAttribute('viewBox', '-130 -130 260 260');
+
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    defs.innerHTML = `
+      <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="${cfg.stops[0]}"/>
+        <stop offset="50%" stop-color="${cfg.stops[1]}"/>
+        <stop offset="100%" stop-color="${cfg.stops[2]}"/>
+      </linearGradient>
+      <linearGradient id="${bevelId}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+        <stop offset="45%" stop-color="#ffffff" stop-opacity="0.25"/>
+        <stop offset="55%" stop-color="#000000" stop-opacity="0.12"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="0.48"/>
+      </linearGradient>
+      <linearGradient id="${glossId}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.32"/>
+        <stop offset="42%" stop-color="#ffffff" stop-opacity="0.04"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="0.15"/>
+      </linearGradient>
+    `;
+    svg.appendChild(defs);
+
+    angles.forEach((angDeg, idx) => {
+      const slot = idx + 1;
+      const rad = (angDeg * Math.PI) / 180;
+      const pcx = rPetalCenter * Math.cos(rad);
+      const pcy = rPetalCenter * Math.sin(rad);
+      const { pTip, pRight, pBase, pLeft, pointsStr } = computeRhombusPoints(pcx, pcy, angDeg, aRhombus, bRhombus);
+      const lblX = rLabel * Math.cos(rad);
+      const lblY = rLabel * Math.sin(rad);
+
+      const ornamentGroup = buildSlotOrnament(starKey, slot, pTip, pRight, pBase, pLeft, lblX, lblY, angDeg, pointsStr);
+      ornamentGroup.removeAttribute('id');
+      ornamentGroup.setAttribute('class', `tile-ornament ornament-${starKey} filled`);
+      ornamentGroup.querySelector('.empty-ornament-layer')?.remove();
+
+      const resinBase = ornamentGroup.querySelector('.tile-resin-base');
+      if (resinBase) {
+        resinBase.style.fill = `url(#${gradId})`;
+        resinBase.style.stroke = cfg.stroke;
+        resinBase.style.filter = 'none';
+      }
+      const bevelPoly = ornamentGroup.querySelector('.tile-bevel');
+      if (bevelPoly) {
+        bevelPoly.style.fill = `url(#${glossId})`;
+        bevelPoly.style.stroke = `url(#${bevelId})`;
+      }
+
+      svg.appendChild(ornamentGroup);
+    });
+
+    container.appendChild(svg);
+  });
 }
 
 /**
@@ -1790,11 +1978,20 @@ function setupEventListeners() {
 
   // Modal de Regras
   const btnRulesModal = document.getElementById('btnRulesModal');
+  const btnOpenManualFromGuide = document.getElementById('btnOpenManualFromGuide');
   const btnCloseRules = document.getElementById('btnCloseRules');
   const rulesModal = document.getElementById('rulesModal');
 
   if (btnRulesModal && rulesModal) {
     btnRulesModal.addEventListener('click', () => rulesModal.classList.remove('hidden'));
+  }
+  if (btnOpenManualFromGuide && rulesModal) {
+    btnOpenManualFromGuide.addEventListener('click', () => {
+      rulesModal.classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('manualPhotosGallery')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    });
   }
   if (btnCloseRules && rulesModal) {
     btnCloseRules.addEventListener('click', () => rulesModal.classList.add('hidden'));

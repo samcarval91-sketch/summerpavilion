@@ -6,5 +6,5 @@ __pycache__/
 venv/
 env/
 .env
-manual/
+/manual/
 

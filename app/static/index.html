@@ -76,6 +76,14 @@
               "@type": "Answer",
               "text": "Cobrir todos os números 1, 2, 3 ou 4 nas 7 estrelas concede +4, +8, +12 e +16 pontos. Cercar completamente uma Coluna/Pilar concede +1 azulejo bônus, uma Estátua concede +2 azulejos bônus e uma Janela concede +3 azulejos bônus."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Como funcionam as regras de compra e colocação de azulejos e curingas no Azul: Pavilhão de Verão?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Na Fase 1 (Compra), escolha uma fábrica ou o centro da mesa, pegue todos os azulejos de uma única cor não-curinga e, se houver azulejos da cor curinga da rodada naquele local, pegue obrigatoriamente 1 azulejo curinga extra. Na Fase 2 (Colocação), para cobrir um espaço de número N (1 a 6), pague N azulejos (podendo combinar curingas da rodada desde que use ao menos 1 azulejo da cor da estrela): 1 azulejo vai para o tabuleiro e N-1 vão para o depósito. Ao passar, você pode guardar até 4 azulejos nos cantos de reserva."
+            }
           }
         ]
       }
@@ -86,9 +94,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css?v=14">
+  <link rel="stylesheet" href="/static/style.css?v=22">
 </head>
 <body>
+  <!-- Fundo Decorativo Estilo Manual Oficial (Pergaminho + Estrelas Completas com Azulejos Reais do Jogo) -->
+  <div id="pavilionBgDecor" class="pavilion-bg-decor" aria-hidden="true"></div>
+
   <!-- Header Bar -->
   <header class="app-header">
     <div class="header-container">
@@ -446,11 +457,68 @@
       </div>
 
       <div class="guide-header">
-        <span class="guide-kicker" data-i18n="guide_kicker">GUIA ILUSTRADO DO JOGO</span>
-        <h2 id="guideMainTitle" class="guide-main-title" data-i18n="guide_main_title">Como Contar os Pontos no Azul: Pavilhão de Verão</h2>
+        <span class="guide-kicker" data-i18n="guide_kicker">GUIA RÁPIDO</span>
+        <h2 id="guideMainTitle" class="guide-main-title" data-i18n="guide_main_title">Como Jogar e Contar os Pontos no Azul: Pavilhão de Verão</h2>
         <p class="guide-subtitle" data-i18n="guide_subtitle">
-          Entenda rapidamente todas as regras oficiais de pontuação, bônus de espaços especiais e as melhores estratégias para vencer suas partidas.
+          Entenda rapidamente as regras de compra e colocação de azulejos segundo o manual, a pontuação de bônus e as melhores estratégias para vencer.
         </p>
+        <div class="guide-header-actions">
+          <button type="button" id="btnOpenManualFromGuide" class="btn btn-sm btn-outline manual-open-btn" data-i18n="btn_open_manual_photos">
+            📖 Ver Fotos do Manual Oficial (Págs. 2 a 11)
+          </button>
+        </div>
+      </div>
+
+      <!-- Regras de Compra e Colocação de Azulejos (Fases do Turno no Manual) -->
+      <div class="turn-rules-grid">
+        <!-- Fase I: Compra de Azulejos -->
+        <article class="turn-rule-card">
+          <div class="turn-rule-header">
+            <span class="turn-phase-badge" data-i18n="phase1_badge">FASE I • COMPRA</span>
+            <h3 class="turn-rule-title" data-i18n="phase1_title">Adquirir Azulejos (Fábricas, Centro e Curinga)</h3>
+          </div>
+          <div class="turn-rule-steps">
+            <div class="turn-step-box" data-i18n="phase1_r1">
+              <strong>1. Escolha 1 Cor:</strong> Na sua vez, escolha uma Fábrica ou o Centro da mesa e pegue <strong>todos os azulejos de uma única cor</strong> (não é permitido escolher a cor curinga diretamente).
+            </div>
+            <div class="turn-step-box" data-i18n="phase1_r2">
+              <strong>2. Bônus de +1 Curinga:</strong> Se naquele local houver azulejo(s) da <strong>cor curinga da rodada</strong>, você <strong>deve pegar 1 azulejo curinga extra</strong> gratuitamente. <em>(Exceção: se só restarem curingas no local, pegue apenas 1 curinga).</em>
+            </div>
+            <div class="turn-step-box" data-i18n="phase1_r3">
+              <strong>3. Centro e 1º Jogador:</strong> Os azulejos restantes da Fábrica vão para o centro. O primeiro jogador a comprar do centro pega o marcador de <strong>1º Jogador</strong> e perde <strong>-1 ponto por azulejo pego</strong> nessa compra.
+            </div>
+          </div>
+          <div class="wild-track-bar">
+            <span class="wild-track-label" data-i18n="wild_track_label">Cor Curinga por Rodada:</span>
+            <div class="wild-track-pills">
+              <span class="wild-pill"><i class="rhombus-icon rhombus-purple"></i> R1</span>
+              <span class="wild-pill"><i class="rhombus-icon rhombus-green"></i> R2</span>
+              <span class="wild-pill"><i class="rhombus-icon rhombus-orange"></i> R3</span>
+              <span class="wild-pill"><i class="rhombus-icon rhombus-yellow"></i> R4</span>
+              <span class="wild-pill"><i class="rhombus-icon rhombus-blue"></i> R5</span>
+              <span class="wild-pill"><i class="rhombus-icon rhombus-red"></i> R6</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Fase II: Colocação de Azulejos e Reserva -->
+        <article class="turn-rule-card">
+          <div class="turn-rule-header">
+            <span class="turn-phase-badge phase2-badge" data-i18n="phase2_badge">FASE II • COLOCAÇÃO</span>
+            <h3 class="turn-rule-title" data-i18n="phase2_title">Colocar no Tabuleiro e Cantos de Reserva</h3>
+          </div>
+          <div class="turn-rule-steps">
+            <div class="turn-step-box" data-i18n="phase2_r1">
+              <strong>1. Estrelas Coloridas (1 a 6):</strong> Para cobrir o espaço <strong>N</strong>, pague <strong>N azulejos</strong> (<strong>1 vai para o tabuleiro</strong> e <strong>N - 1 vão para o depósito</strong>). Você pode completar o custo com curingas da rodada, desde que use <strong>ao menos 1 azulejo da cor da estrela</strong>.
+            </div>
+            <div class="turn-step-box" data-i18n="phase2_r2">
+              <strong>2. Estrela Central (Multicolorida):</strong> Pague <strong>N azulejos de uma mesma cor</strong> (podendo completar com curingas da rodada), mas <strong>sem repetir cores</strong> já colocadas nela — ao final, os 6 espaços terão 6 cores diferentes.
+            </div>
+            <div class="turn-step-box" data-i18n="phase2_r3">
+              <strong>3. Passar e Cantos (Máx. 4):</strong> Ao encerrar sua rodada, guarde até <strong>4 azulejos</strong> nos cantos do tabuleiro para a próxima rodada. Peças excedentes descartadas no depósito (ou que sobrarem no fim da 6ª rodada) descontam <strong>-1 ponto cada</strong>.
+            </div>
+          </div>
+        </article>
       </div>
 
       <!-- Grade de Cards Visuais das Regras -->
@@ -492,7 +560,7 @@
           </div>
           <h3 class="guide-card-title" data-i18n="guide_c1_title">1. Pontos de Colocação e Adjacência</h3>
           <p class="guide-card-text" data-i18n="guide_c1_desc">
-            Para cobrir o espaço de número <strong>N</strong> (1 a 6), você gasta <strong>N azulejos</strong> daquela cor (1 vai para o tabuleiro e os demais para a torre). Cada novo azulejo vale <strong>1 ponto + 1 ponto para cada azulejo conectado</strong> a ele na mesma estrela.
+            Para cobrir o espaço de número <strong>N</strong> (1 a 6), você gasta <strong>N azulejos</strong> daquela cor (1 vai para o tabuleiro e os demais para o depósito). Cada novo azulejo vale <strong>1 ponto + 1 ponto para cada azulejo conectado</strong> a ele na mesma estrela.
           </p>
           <div class="guide-progression-pills">
             <span class="prog-pill">1 = <strong>1p</strong></span>
@@ -504,22 +572,46 @@
           </div>
         </article>
 
-        <!-- Card 2: Bônus de Estrelas Completas -->
+        <!-- Card 2: Bônus de Estrelas Completas (Estrela do Favicon) -->
         <article class="guide-card">
           <div class="guide-card-visual">
-            <svg viewBox="0 0 220 84" class="guide-svg-illustration" aria-hidden="true">
-              <!-- Mini estrelas/losangos das 7 cores com valores de bônus -->
-              <g transform="translate(110,42)">
-                <circle r="34" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 2"/>
-                <polygon points="0,0 -6,-11 0,-28 6,-11" fill="#dc2626"/>
-                <polygon points="0,0 11,-6 26,-14 14,2" fill="#0284c7"/>
-                <polygon points="0,0 14,2 26,14 11,6" fill="#eab308"/>
-                <polygon points="0,0 6,11 0,28 -6,11" fill="#65a30d"/>
-                <polygon points="0,0 -11,6 -26,14 -14,2" fill="#9333ea"/>
-                <polygon points="0,0 -14,-2 -26,-14 -11,-6" fill="#ea580c"/>
-                <circle r="11" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
-                <text x="0" y="1" text-anchor="middle" dominant-baseline="central" fill="#fbbf24" font-family="Cinzel,serif" font-weight="800" font-size="10">★</text>
-              </g>
+            <svg viewBox="0 0 64 64" class="guide-svg-illustration" aria-hidden="true">
+              <defs>
+                <linearGradient id="favRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff4d58"/>
+                  <stop offset="100%" stop-color="#dc141f"/>
+                </linearGradient>
+                <linearGradient id="favBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#38bdf8"/>
+                  <stop offset="100%" stop-color="#0284c7"/>
+                </linearGradient>
+                <linearGradient id="favYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fde047"/>
+                  <stop offset="100%" stop-color="#d97706"/>
+                </linearGradient>
+                <linearGradient id="favGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#bef264"/>
+                  <stop offset="100%" stop-color="#65a30d"/>
+                </linearGradient>
+                <linearGradient id="favPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#e879f9"/>
+                  <stop offset="100%" stop-color="#9333ea"/>
+                </linearGradient>
+                <linearGradient id="favOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fb923c"/>
+                  <stop offset="100%" stop-color="#ea580c"/>
+                </linearGradient>
+              </defs>
+              <!-- Medalhão de fundo azul-marinho e dourado idêntico ao Favicon -->
+              <circle cx="32" cy="32" r="30.5" fill="#0f172a" stroke="#f59e0b" stroke-width="2.2"/>
+              <polygon points="32,32 24.5,19.0 32,3.5 39.5,19.0" fill="url(#favRed)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+              <polygon points="32,32 39.5,19.0 56.7,17.8 47.0,32.0" fill="url(#favBlue)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+              <polygon points="32,32 47.0,32.0 56.7,46.2 39.5,45.0" fill="url(#favYellow)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+              <polygon points="32,32 39.5,45.0 32,60.5 24.5,45.0" fill="url(#favGreen)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+              <polygon points="32,32 24.5,45.0 7.3,46.2 17.0,32.0" fill="url(#favPurple)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+              <polygon points="32,32 17.0,32.0 7.3,17.8 24.5,19.0" fill="url(#favOrange)" stroke="#ffffff" stroke-width="1.1" stroke-linejoin="round"/>
+              <circle cx="32" cy="32" r="6.8" fill="#0f172a" stroke="#fbbf24" stroke-width="2"/>
+              <circle cx="32" cy="32" r="2.6" fill="#fbbf24"/>
             </svg>
           </div>
           <h3 class="guide-card-title" data-i18n="guide_c2_title">2. Bônus de Estrelas Completas</h3>
@@ -537,36 +629,62 @@
           </div>
         </article>
 
-        <!-- Card 3: Espaços Especiais (Pilar, Estátua, Janela) e Números -->
+        <!-- Card 3: Espaços Especiais (Ilustrações Oficiais do Tabuleiro Interativo) -->
         <article class="guide-card">
           <div class="guide-card-visual">
-            <svg viewBox="0 0 240 84" class="guide-svg-illustration" aria-hidden="true">
-              <!-- Pilar (+1) dentro de azulejo -->
-              <g transform="translate(45,42)">
-                <polygon points="0,-32 22,0 0,32 -22,0" fill="#fbf3db" stroke="#a18053" stroke-width="1.6"/>
-                <circle r="11" fill="#1e293b"/>
-                <circle r="9.2" fill="#334155" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="2 1.5"/>
-                <circle r="6" fill="#0284c7" stroke="#38bdf8" stroke-width="1"/>
-                <circle r="3.8" fill="#ffffff"/>
-                <text x="0" y="21" text-anchor="middle" fill="#0f172a" font-weight="800" font-size="9">+1</text>
+            <svg viewBox="0 0 320 124" class="guide-svg-illustration" aria-hidden="true">
+              <defs>
+                <linearGradient id="guide-grad-bonus-tile" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fffdf9"/>
+                  <stop offset="55%" stop-color="#f3ead8"/>
+                  <stop offset="100%" stop-color="#d9c7a7"/>
+                </linearGradient>
+              </defs>
+              <!-- Pilar / Coluna (+1) do tabuleiro interativo -->
+              <g transform="translate(62,62)">
+                <polygon points="0,56.6 -32.7,0 0,-56.6 32.7,0" fill="url(#guide-grad-bonus-tile)" stroke="#a18053" stroke-width="1.5" stroke-linejoin="round"/>
+                <polygon points="0,47.5 -27.4,0 0,-47.5 27.4,0" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.1" stroke-linejoin="round"/>
+                <g class="feature-art">
+                  <circle r="17.5" fill="rgba(30, 41, 59, 0.2)"/>
+                  <circle r="15.5" fill="#1e293b" stroke="#0f172a" stroke-width="1.2"/>
+                  <circle r="13.5" fill="#334155" stroke="#94a3b8" stroke-width="2.4" stroke-dasharray="2.5 1.9"/>
+                  <circle r="10.2" fill="#0f172a"/>
+                  <circle r="8.8" fill="#0284c7" stroke="#38bdf8" stroke-width="1.2"/>
+                  <circle r="6.2" fill="#ffffff" stroke="#bae6fd" stroke-width="0.9"/>
+                </g>
+                <text class="feature-bonus-badge" x="0" y="34">+1</text>
               </g>
-              <!-- Estátua (+2) dentro de azulejo -->
-              <g transform="translate(120,42)">
-                <polygon points="0,-32 22,0 0,32 -22,0" fill="#fbf3db" stroke="#a18053" stroke-width="1.6"/>
-                <rect x="-8" y="-12" width="16" height="15" rx="2" fill="#92400e" stroke="#451a03" stroke-width="1"/>
-                <rect x="-5.5" y="-9.5" width="11" height="10" rx="1" fill="#d97706"/>
-                <ellipse cx="0" cy="-1.5" rx="4.5" ry="7.5" fill="#0284c7" stroke="#082f49" stroke-width="1"/>
-                <circle cx="0" cy="7.5" r="3.5" fill="#7dd3fc" stroke="#082f49" stroke-width="1"/>
-                <text x="0" y="22" text-anchor="middle" fill="#0f172a" font-weight="800" font-size="9">+2</text>
+              <!-- Estátua (+2) do tabuleiro interativo -->
+              <g transform="translate(160,62)">
+                <polygon points="0,56.6 -32.7,0 0,-56.6 32.7,0" fill="url(#guide-grad-bonus-tile)" stroke="#a18053" stroke-width="1.5" stroke-linejoin="round"/>
+                <polygon points="0,47.5 -27.4,0 0,-47.5 27.4,0" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.1" stroke-linejoin="round"/>
+                <g class="feature-art">
+                  <ellipse cx="0" cy="3" rx="10" ry="14" fill="rgba(12, 74, 110, 0.16)"/>
+                  <polygon points="0,22 -13,14.5 0,8 13,14.5" fill="#082f49" stroke="#0c4a6e" stroke-width="0.9"/>
+                  <polygon points="0,17.5 -10,11.5 0,6 10,11.5" fill="#0369a1" stroke="#38bdf8" stroke-width="0.8"/>
+                  <path d="M -4.5,11.5 L -6,2 L -3,-2 L 3,-2 L 5.5,3 L 4,11.5 Z" fill="#0284c7" stroke="#082f49" stroke-width="1"/>
+                  <path d="M -5.5,1.5 C -9.5,-1 -11.5,-5.5 -9,-9.5 C -7,-12.5 -3.5,-13.5 0,-13.5 C 4,-13.5 7.5,-11.5 10.5,-7 C 11.5,-5 12,-2 10,-0.8 C 8.5,0 7,-3 5,-4 L 4.2,3 L -4.2,3 Z" fill="#0ea5e9" stroke="#082f49" stroke-width="1"/>
+                  <path d="M -5,-7 Q 0,-3 4.5,-7 M -3.5,-1.5 Q 1,0.5 3.5,-2.5" fill="none" stroke="#bae6fd" stroke-width="1.2" stroke-linecap="round"/>
+                  <circle cx="-0.8" cy="-15" r="4.6" fill="#0284c7" stroke="#082f49" stroke-width="1"/>
+                  <path d="M -4.5,-16.5 C -3,-19.5 2,-19.5 3.2,-15.5 C 1,-16.5 -2,-16.5 -4.5,-16.5 Z" fill="#bae6fd"/>
+                </g>
+                <text class="feature-bonus-badge" x="0" y="35.1">+2</text>
               </g>
-              <!-- Janela (+3) dentro de azulejo -->
-              <g transform="translate(195,42)">
-                <polygon points="0,-32 22,0 0,32 -22,0" fill="#fbf3db" stroke="#a18053" stroke-width="1.6"/>
-                <path d="M -8,8 L -8,-5 C -8,-11 -3.5,-14 0,-16 C 3.5,-14 8,-11 8,-5 L 8,8 Z" fill="#0f2942"/>
-                <rect x="-6.5" y="-3.5" width="2" height="10.5" fill="#f59e0b"/>
-                <rect x="4.5" y="-3.5" width="2" height="10.5" fill="#f59e0b"/>
-                <path d="M -4.5,7 L -4.5,-3.5 C -4.5,-6 0,-7.5 0,-5 C 0,-7.5 4.5,-6 4.5,-3.5 L 4.5,7 Z" fill="#fffdf7" stroke="#d97706" stroke-width="0.8"/>
-                <text x="0" y="21" text-anchor="middle" fill="#0f172a" font-weight="800" font-size="9">+3</text>
+              <!-- Janela (+3) do tabuleiro interativo -->
+              <g transform="translate(258,62)">
+                <polygon points="0,56.6 -32.7,0 0,-56.6 32.7,0" fill="url(#guide-grad-bonus-tile)" stroke="#a18053" stroke-width="1.5" stroke-linejoin="round"/>
+                <polygon points="0,47.5 -27.4,0 0,-47.5 27.4,0" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="1.1" stroke-linejoin="round"/>
+                <g class="feature-art">
+                  <path d="M -25,5 L -12,-4 L -12,11 L 0,20 L 12,11 L 12,-4 L 25,5 L 0,23 Z" fill="#1e4e68" stroke="#0f2942" stroke-width="1"/>
+                  <path d="M -17,5 C -14.5,2 -12.5,4 -13.5,7.5 M 17,5 C 14.5,2 12.5,4 13.5,7.5" fill="none" stroke="#f8fafc" stroke-width="1.3" stroke-linecap="round"/>
+                  <path d="M -12,12 L -12,-7 C -12,-15.5 -5.5,-20.5 0,-23 C 5.5,-20.5 12,-15.5 12,-7 L 12,12 Z" fill="#0f2942" stroke="#091526" stroke-width="1.1"/>
+                  <path d="M -9.5,-6 C -9.5,-13.5 -4.2,-17.5 0,-19.5 C 4.2,-17.5 9.5,-13.5 9.5,-6" fill="none" stroke="#38bdf8" stroke-width="1.4"/>
+                  <polygon points="0,-21 2.2,-18.8 0,-16.6 -2.2,-18.8" fill="#f59e0b"/>
+                  <rect x="-10" y="-5" width="2.6" height="15.5" fill="#f59e0b" stroke="#78350f" stroke-width="0.6"/>
+                  <rect x="7.4" y="-5" width="2.6" height="15.5" fill="#f59e0b" stroke="#78350f" stroke-width="0.6"/>
+                  <path d="M -7.2,10.5 L -7.2,-5 C -7.2,-8.2 -4.2,-9.2 -3.2,-7.5 C -3.2,-11.5 3.2,-11.5 3.2,-7.5 C 4.2,-9.2 7.2,-8.2 7.2,-5 L 7.2,10.5 Z" fill="#fffdf7" stroke="#d97706" stroke-width="1"/>
+                </g>
+                <text class="feature-bonus-badge" x="0" y="34">+3</text>
               </g>
             </svg>
           </div>
@@ -595,8 +713,8 @@
       <!-- Seção de Estratégias Vencedoras -->
       <div class="strategy-container">
         <div class="guide-header">
-          <span class="guide-kicker strategy-kicker" data-i18n="strat_kicker">DICAS AVANÇADAS DE JOGO</span>
-          <h2 class="guide-main-title" data-i18n="strat_main_title">4 Estratégias para Vencer no Azul: Pavilhão de Verão</h2>
+          <span class="guide-kicker strategy-kicker" data-i18n="strat_kicker">DICAS</span>
+          <h2 class="guide-main-title" data-i18n="strat_main_title">5 Estratégias para Vencer no Azul: Pavilhão de Verão</h2>
         </div>
 
         <div class="strategy-grid">
@@ -651,6 +769,37 @@
               </p>
             </div>
           </div>
+
+          <div class="strategy-item strategy-item-wide">
+            <div class="strategy-badge">
+              <span class="rhombus-icon rhombus-red"></span>
+              <span>05</span>
+            </div>
+            <div class="strategy-content strategy-content-full">
+              <h4 data-i18n="strat_5_title">Planeje pela Quantidade de Azulejos na Partida</h4>
+              <div class="tile-economy-grid">
+                <div class="tile-economy-box">
+                  <span class="econ-players" data-i18n="strat_5_2p_title">👥 2 Jogadores</span>
+                  <span class="econ-formula" data-i18n="strat_5_2p_math">5 Fábricas × 4 Azulejos × 6 rodadas</span>
+                  <div class="econ-result" data-i18n="strat_5_2p_res">Total: <strong>120 azulejos</strong> <span class="econ-sep">|</span> Média: <strong>60 / jogador</strong></div>
+                </div>
+                <div class="tile-economy-box">
+                  <span class="econ-players" data-i18n="strat_5_3p_title">👥 3 Jogadores</span>
+                  <span class="econ-formula" data-i18n="strat_5_3p_math">7 Fábricas × 4 Azulejos × 6 rodadas</span>
+                  <div class="econ-result" data-i18n="strat_5_3p_res">Total: <strong>168 azulejos</strong> <span class="econ-sep">|</span> Média: <strong>56 / jogador</strong></div>
+                </div>
+                <div class="tile-economy-box">
+                  <span class="econ-players" data-i18n="strat_5_4p_title">👥 4 Jogadores</span>
+                  <span class="econ-formula" data-i18n="strat_5_4p_math">9 Fábricas × 4 Azulejos × 6 rodadas</span>
+                  <div class="econ-result" data-i18n="strat_5_4p_res">Total: <strong>216 azulejos</strong> <span class="econ-sep">|</span> Média: <strong>54 / jogador</strong></div>
+                </div>
+              </div>
+              <div class="tile-economy-divider" aria-hidden="true"></div>
+              <p class="tile-economy-conclusion" data-i18n="strat_5_conclusion">
+                🎯 <strong>Planeje de acordo:</strong> para preencher todos os números de <strong>1 a 4</strong> são necessários <strong>70 azulejos</strong> <span class="econ-sep">•</span> com <strong>15 azulejos de bônus</strong>, seriam necessários no mínimo <strong>55 azulejos comprados</strong>!
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -667,9 +816,9 @@
   <!-- Rules Modal -->
   <div id="rulesModal" class="modal hidden">
     <div class="modal-backdrop"></div>
-    <div class="modal-content card">
+    <div class="modal-content rules-modal-wide card">
       <div class="modal-header">
-        <h3 id="rulesModalTitle" data-i18n="rules_modal_title">Regras Oficiais de Pontuação (Pavilhão de Verão)</h3>
+        <h3 id="rulesModalTitle" data-i18n="rules_modal_title">Regras Oficiais do Manual (Pavilhão de Verão)</h3>
         <button id="btnCloseRules" class="btn-close">&times;</button>
       </div>
       <div class="modal-body" id="rulesModalBody">
@@ -702,6 +851,6 @@
     </div>
   </div>
 
-  <script src="/static/app.js?v=11"></script>
+  <script src="/static/app.js?v=17"></script>
 </body>
 </html>
