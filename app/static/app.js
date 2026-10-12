@@ -845,7 +845,6 @@ function initBoardSvg() {
       polygon.setAttribute('data-star', starKey);
       polygon.setAttribute('data-slot', slot);
       polygon.setAttribute('stroke-linejoin', 'round');
-      polygon.setAttribute('filter', 'url(#tileShadow)');
 
       polygon.addEventListener('click', () => toggleSlot(starKey, slot));
       starGroup.appendChild(polygon);
@@ -931,7 +930,6 @@ function initBoardSvg() {
     polygon.setAttribute('data-star', 'center');
     polygon.setAttribute('data-slot', slot);
     polygon.setAttribute('stroke-linejoin', 'round');
-    polygon.setAttribute('filter', 'url(#tileShadow)');
 
     polygon.addEventListener('click', () => toggleSlot('center', slot));
     centerGroup.appendChild(polygon);
@@ -1262,10 +1260,10 @@ function syncSurroundingFeaturesFromBoard() {
     const el = document.getElementById(`feature-window-${starKey}`);
     if (isSurrounded) {
       appState.surrounding.windows.add(starKey);
-      if (el) el.classList.add('feature-active');
+      if (el && !el.classList.contains('feature-active')) el.classList.add('feature-active');
     } else {
       appState.surrounding.windows.delete(starKey);
-      if (el) el.classList.remove('feature-active');
+      if (el && el.classList.contains('feature-active')) el.classList.remove('feature-active');
     }
   });
 
@@ -1280,10 +1278,10 @@ function syncSurroundingFeaturesFromBoard() {
     const el = document.getElementById(`feature-column-${starKey}`);
     if (isSurrounded) {
       appState.surrounding.columns.add(starKey);
-      if (el) el.classList.add('feature-active');
+      if (el && !el.classList.contains('feature-active')) el.classList.add('feature-active');
     } else {
       appState.surrounding.columns.delete(starKey);
-      if (el) el.classList.remove('feature-active');
+      if (el && el.classList.contains('feature-active')) el.classList.remove('feature-active');
     }
   });
 
@@ -1298,10 +1296,10 @@ function syncSurroundingFeaturesFromBoard() {
     const el = document.getElementById(`feature-statue-${statDeg}`);
     if (isSurrounded) {
       appState.surrounding.statues.add(statDeg);
-      if (el) el.classList.add('feature-active');
+      if (el && !el.classList.contains('feature-active')) el.classList.add('feature-active');
     } else {
       appState.surrounding.statues.delete(statDeg);
-      if (el) el.classList.remove('feature-active');
+      if (el && el.classList.contains('feature-active')) el.classList.remove('feature-active');
     }
   });
 
@@ -1407,7 +1405,7 @@ function updateSurroundingCounters() {
 }
 
 /**
- * Atualiza classes visuais dos azulejos no SVG de acordo com appState
+ * Atualiza classes visuais dos azulejos no SVG de acordo com appState (apenas nos elementos que mudaram)
  */
 function updateSvgVisuals() {
   for (const [starKey, config] of Object.entries(STARS_CONFIG)) {
@@ -1418,14 +1416,19 @@ function updateSvgVisuals() {
       const ornament = document.getElementById(`ornament-${starKey}-${slot}`);
       if (!polygon || !text) continue;
 
-      if (set.has(slot)) {
-        polygon.className.baseVal = `svg-slot slot-${starKey} ${config.colorClass}`;
-        text.className.baseVal = `slot-text text-${starKey} filled`;
-        if (ornament) ornament.className.baseVal = `tile-ornament ornament-${starKey} filled`;
-      } else {
-        polygon.className.baseVal = `svg-slot slot-${starKey}`;
-        text.className.baseVal = `slot-text text-${starKey}`;
-        if (ornament) ornament.className.baseVal = `tile-ornament ornament-${starKey}`;
+      const isFilled = set.has(slot);
+      const nextPolyClass = isFilled ? `svg-slot slot-${starKey} ${config.colorClass}` : `svg-slot slot-${starKey}`;
+      const nextTextClass = isFilled ? `slot-text text-${starKey} filled` : `slot-text text-${starKey}`;
+      const nextOrnClass = isFilled ? `tile-ornament ornament-${starKey} filled` : `tile-ornament ornament-${starKey}`;
+
+      if (polygon.className.baseVal !== nextPolyClass) {
+        polygon.className.baseVal = nextPolyClass;
+      }
+      if (text.className.baseVal !== nextTextClass) {
+        text.className.baseVal = nextTextClass;
+      }
+      if (ornament && ornament.className.baseVal !== nextOrnClass) {
+        ornament.className.baseVal = nextOrnClass;
       }
     }
   }

@@ -164,9 +164,13 @@ body {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  body {
+    background-attachment: scroll;
+  }
   .bg-decor-svg {
     opacity: 0.22;
+    filter: none;
   }
 }
 
@@ -713,13 +717,16 @@ body {
   cursor: pointer;
   transform-box: fill-box;
   transform-origin: center;
-  transition: filter 0.2s ease, transform 0.14s ease, stroke-width 0.22s ease;
+  transition: transform 0.12s ease;
   stroke-width: 1.6;
   fill: #faf6ee;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.svg-slot:hover {
-  filter: brightness(1.08);
+@media (hover: hover) {
+  .svg-slot:hover {
+    filter: brightness(1.08);
+  }
 }
 
 .svg-slot:active {
@@ -738,7 +745,7 @@ body {
 /* Camada impressa no tabuleiro (visível quando vazio) */
 .tile-ornament .empty-ornament-layer {
   opacity: 1;
-  transition: opacity 0.22s ease;
+  transition: opacity 0.15s ease-out;
 }
 
 .tile-ornament.filled .empty-ornament-layer {
@@ -754,11 +761,10 @@ body {
 /* Camada da peça física 3D de resina (anima com efeito mola 3D ao colocar/remover) */
 .tile-ornament .resin-tile-layer {
   opacity: 0;
-  transform: scale(0.68);
+  transform: scale(0.72);
   transition:
-    opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
-  will-change: transform, opacity;
+    opacity 0.15s ease-out,
+    transform 0.22s cubic-bezier(0.34, 1.45, 0.64, 1);
 }
 
 .tile-ornament.filled .resin-tile-layer {
@@ -774,6 +780,12 @@ body {
 .ornament-orange .tile-resin-base { fill: url(#grad-filled-orange); stroke: #7c2d12; stroke-width: 2.2; filter: url(#tileFilledShadow); }
 .ornament-purple .tile-resin-base { fill: url(#grad-filled-purple); stroke: #4a044e; stroke-width: 2.2; filter: url(#tileFilledShadow); }
 .ornament-center .tile-resin-base { fill: url(#grad-filled-center); stroke: #f59e0b; stroke-width: 2.4; filter: url(#tileFilledShadow); }
+
+@media (hover: none), (max-width: 900px) {
+  .tile-ornament .tile-resin-base {
+    filter: none;
+  }
+}
 
 /* Chanfro 3D da peça de resina */
 .tile-ornament .resin-tile-layer .tile-bevel {
@@ -829,12 +841,13 @@ body {
   dominant-baseline: central;
   pointer-events: none;
   user-select: none;
-  transform: translate(0px, 0px);
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translate(0px, 0px) scale(1);
   transition:
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    fill 0.24s ease,
-    stroke 0.24s ease,
-    font-size 0.24s ease;
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    fill 0.16s ease,
+    stroke 0.16s ease;
 }
 
 .slot-text.text-red    { fill: #991b1b; }
@@ -846,14 +859,13 @@ body {
 .slot-text.text-center { fill: #334155; }
 
 .slot-text.filled {
-  font-size: 11px;
   fill: #ffffff;
   font-weight: 900;
   paint-order: stroke;
   stroke: rgba(15, 23, 42, 0.88);
-  stroke-width: 2.6px;
+  stroke-width: 3.6px;
   stroke-linejoin: round;
-  transform: translate(var(--tx, 0px), var(--ty, 0px));
+  transform: translate(var(--tx, 0px), var(--ty, 0px)) scale(0.69);
 }
 
 .star-label-text {
